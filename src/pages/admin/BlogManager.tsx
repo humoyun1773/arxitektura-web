@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { BlogPost } from '../../types';
 import { BookOpen, Plus, Edit, Trash2, Eye, X, Sparkles } from 'lucide-react';
@@ -37,7 +37,7 @@ export const BlogManager: React.FC = () => {
     setSlug(p.slug);
     setExcerpt(p.excerpt);
     setContent(p.content);
-    setCoverImage(p.coverImage || p.image || '');
+    setCoverImage(p.coverImage || '');
     setCategory(p.category);
     setAuthor(p.author);
     setAuthorAvatar(p.authorAvatar || '');
@@ -64,6 +64,7 @@ export const BlogManager: React.FC = () => {
         category,
         author,
         authorAvatar,
+        authorRole: 'Bosh Arxitektor / Dizayner',
         readTime,
         tags,
         isPublished
@@ -78,6 +79,7 @@ export const BlogManager: React.FC = () => {
         category,
         author,
         authorAvatar,
+        authorRole: 'Bosh Arxitektor / Dizayner',
         readTime,
         tags,
         isPublished

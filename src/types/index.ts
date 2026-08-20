@@ -99,8 +99,11 @@ export interface Review {
   id: string;
   name?: string;
   clientRole?: string;
+  company?: string;
+  workPosition?: string;
   avatar: string;
   projectTitle: string;
+  courseTitle?: string;
   rating: number;
   comment: string;
   date: string;

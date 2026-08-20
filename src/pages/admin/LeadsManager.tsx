@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { LeadStatus } from '../../types';
 import { 
@@ -31,7 +31,8 @@ export const LeadsManager: React.FC = () => {
       return (
         lead.fullName.toLowerCase().includes(q) ||
         lead.phone.toLowerCase().includes(q) ||
-        (lead.projectTitle || lead.serviceType && lead.projectTitle || lead.serviceType.toLowerCase().includes(q))
+        (lead.projectTitle && lead.projectTitle.toLowerCase().includes(q)) ||
+        (lead.serviceType && lead.serviceType.toLowerCase().includes(q))
       );
     }
     return true;

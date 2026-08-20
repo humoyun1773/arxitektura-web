@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { Star, CheckCircle, XCircle, Trash2, Plus, Quote, Sparkles } from 'lucide-react';
 
@@ -20,6 +20,7 @@ export const ReviewsManager: React.FC = () => {
     addReview({
       name: name.trim(),
       avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+      projectTitle: courseTitle || 'Loyiha Konsultatsiyasi',
       courseTitle,
       company,
       workPosition,

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useData } from "../../context/DataContext";
 import { Users, BookOpen, TrendingUp, CheckCircle2, AlertCircle, Clock, Building2, FolderOpen } from "lucide-react";
 
@@ -28,7 +28,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigateTab }) => {
     {
       title: "Loyihalar Portfeli",
       value: projects.length,
-      sub: `${projects.filter(p => p.isPublished).length} ta nashr qilingan`,
+      sub: `${projects.filter(p => p.isActive).length} ta faol loyiha`,
       icon: <FolderOpen className="w-5 h-5 text-violet-400" />,
       color: "from-violet-500/20 to-violet-500/5",
       actionTab: "leads"
