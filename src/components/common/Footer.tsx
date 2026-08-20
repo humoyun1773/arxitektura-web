@@ -93,6 +93,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
+                <button onClick={() => onNavigate('about')} className="hover:text-indigo-600 transition-colors">
+                  {t('nav.about', 'Biz haqimizda')}
+                </button>
+              </li>
+              <li>
                 <button onClick={() => onNavigate('courses')} className="hover:text-indigo-600 transition-colors">
                   {t('nav.courses', 'Kurslar')}
                 </button>
@@ -100,11 +105,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button onClick={() => onNavigate('teachers')} className="hover:text-indigo-600 transition-colors">
                   {t('nav.teachers', "O'qituvchilar")}
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('about')} className="hover:text-indigo-600 transition-colors">
-                  {t('nav.about', 'Biz haqimizda')}
                 </button>
               </li>
               <li>

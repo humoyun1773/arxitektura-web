@@ -51,9 +51,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
   const navLinks = [
     { id: 'home', label: t('nav.home', 'Bosh sahifa'), icon: <GraduationCap className="w-4 h-4" /> },
+    { id: 'about', label: t('nav.about', 'Biz haqimizda'), icon: <Info className="w-4 h-4" /> },
     { id: 'courses', label: t('nav.courses', 'Kurslar'), icon: <Layers className="w-4 h-4" />, hasDropdown: true },
     { id: 'teachers', label: t('nav.teachers', "O'qituvchilar"), icon: <Users className="w-4 h-4" /> },
-    { id: 'about', label: t('nav.about', 'Biz haqimizda'), icon: <Info className="w-4 h-4" /> },
     { id: 'blog', label: t('nav.blog', 'Blog & Yangiliklar'), icon: <BookOpen className="w-4 h-4" /> },
   ];
 
