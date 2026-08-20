@@ -238,30 +238,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               </button>
             ))}
           </div>
-
-          <div className="mt-8 pt-6 border-t border-slate-800/80 space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  openLeadModal();
-                }}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-600 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-600/30"
-              >
-                Konsultatsiya
-              </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onNavigate('admin');
-                }}
-                className="w-full py-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"
-              >
-                <ShieldCheck className="w-4 h-4 text-indigo-400" />
-                Admin Panel
-              </button>
-            </div>
-          </div>
         </div>
       )}
     </header>
