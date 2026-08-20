@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { Sparkles, ArrowRight, CheckCircle2, Award, Users, BookOpen } from 'lucide-react';
@@ -11,20 +11,15 @@ interface HeroSliderProps {
 export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
   const { banners, settings } = useData();
   const { t } = useLanguage();
-  const activeBanners = banners.filter((b) => b.isActive);
-  const [currentIdx, setCurrentIdx] = useState(0);
 
-  useEffect(() => {
-    if (activeBanners.length <= 1) return;
-    const timer = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % activeBanners.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [activeBanners.length]);
-
-  if (activeBanners.length === 0) return null;
-
-  const current = activeBanners[currentIdx] || activeBanners[0];
+  const current = banners[0] || {
+    badge: "🏛️ AL-HAKIM AT-TERMEZIY O'QUV MARKAZI",
+    title: 'INTIZOMNI SEVUVCHILAR UCHUN',
+    highlightText: "28 Oylik Ta'lim Kombinatsiyalari",
+    subtitle: "28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkurga ega bo'ling. Kursni muvaffaqiyatli tugatgan iqtidorli talabalar to'liq ish bilan ta'minlanadi.",
+    statsText: "4 ta Xalqaro Til | 100% Ish Bilan Ta'minlash Kafolati | Qarshi Shahar",
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80'
+  };
 
   const telegramUrl = settings?.telegramLink || 'https://t.me/al_hakim_at_termeziy';
 
@@ -45,20 +40,20 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs sm:text-sm font-semibold backdrop-blur-md shadow-lg shadow-indigo-500/5 animate-float">
               <Sparkles className="w-4 h-4 text-amber-300 animate-spin" style={{ animationDuration: '8s' }} />
-              <span>{current.badge}</span>
+              <span>{t('hero.badge1', current.badge)}</span>
             </div>
 
             {/* Title */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-              {current.title}{' '}
+              {t('hero.title1', current.title)}{' '}
               <span className="gradient-text block sm:inline">
-                {current.highlightText}
+                {t('hero.highlight1', current.highlightText)}
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-sm sm:text-lg text-slate-300/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              {current.subtitle}
+              {t('hero.subtitle1', current.subtitle)}
             </p>
 
             {/* CTA buttons */}
