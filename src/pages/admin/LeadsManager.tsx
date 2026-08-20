@@ -79,7 +79,7 @@ export const LeadsManager: React.FC = () => {
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Ism, telefon yoki kurs bo'yicha qidiring..."
+            placeholder="Ism, telefon yoki loyiha bo'yicha qidiring..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-slate-950 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-indigo-500"
@@ -119,7 +119,7 @@ export const LeadsManager: React.FC = () => {
               <tr>
                 <th className="p-4">F.I.SH & Manba</th>
                 <th className="p-4">Telefon</th>
-                <th className="p-4">Tanlangan Kurs</th>
+                <th className="p-4">Loyiha / Xizmat turi</th>
                 <th className="p-4">Holat (Status)</th>
                 <th className="p-4">Izoh (Eslatma)</th>
                 <th className="p-4">Sana</th>
@@ -159,9 +159,9 @@ export const LeadsManager: React.FC = () => {
                         onChange={(e) => updateLeadStatus(lead.id, e.target.value as LeadStatus)}
                         className="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-200 outline-none focus:border-indigo-500"
                       >
-                        <option value="new">Yangi</option>
+                        <option value="new">Yangi ariza</option>
                         <option value="contacted">Bog'lanildi</option>
-                        <option value="registered">O'quvchi bo'ldi</option>
+                        <option value="contract_signed">Shartnoma tuzildi</option>
                         <option value="cancelled">Rad etildi</option>
                       </select>
                     </td>

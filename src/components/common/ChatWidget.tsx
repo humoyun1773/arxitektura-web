@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { MessageSquare, X, Send, Bot, ExternalLink, Sparkles } from 'lucide-react';
 
@@ -10,10 +10,10 @@ export const ChatWidget: React.FC = () => {
   const [sent, setSent] = useState(false);
 
   const quickQuestions = [
-    "Darslar qachon boshlanadi?",
-    "Bo'lib to'lash imkoni bormi?",
-    "Sertifikat xalqaro darajadami?",
-    "Online o'qish mumkinmi?"
+    "1 m² loyihalash narxi qancha?",
+    "Villa loyihasini tayyorlash muddati qancha?",
+    "Mualliflik nazorati qanday olib boriladi?",
+    "Eskiz loyiha va 3D vizualizatsiya buyurtma berish"
   ];
 
   const handleSend = async (e: React.FormEvent) => {
@@ -21,7 +21,7 @@ export const ChatWidget: React.FC = () => {
     if (!question.trim()) return;
 
     await submitLead({
-      fullName: 'Chat Foydalanuvchisi',
+      fullName: 'Onlayn Maslahat So\'rovi',
       phone: phone.trim(),
       source: 'Onlayn Chat Widget',
       serviceType: `Savol: ${question}`
@@ -40,22 +40,22 @@ export const ChatWidget: React.FC = () => {
       {isOpen ? (
         <div className="w-[340px] sm:w-[380px] rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl shadow-black/60 overflow-hidden animate-in zoom-in-95 duration-200">
           {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center justify-between text-white">
+          <div className="p-4 bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700 flex items-center justify-between text-white">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-md">
-                <Bot className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/10">
+                <Bot className="w-5 h-5 text-amber-400" />
               </div>
               <div>
                 <div className="text-sm font-bold flex items-center gap-1.5">
-                  <span>Academy Yordamchisi</span>
+                  <span>Arxitektura Maslahatchisi</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 </div>
-                <div className="text-[11px] text-indigo-100">Onlayn maslahat</div>
+                <div className="text-[11px] text-slate-400">Onlayn konsultatsiya</div>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 rounded-lg hover:bg-white/20 text-white transition-colors"
+              className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -64,11 +64,11 @@ export const ChatWidget: React.FC = () => {
           {/* Content */}
           <div className="p-4 space-y-4 max-h-[420px] overflow-y-auto">
             <div className="flex items-start gap-2.5">
-              <div className="w-7 h-7 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-7 h-7 rounded-full bg-slate-800 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-slate-700">
                 <Bot className="w-4 h-4" />
               </div>
               <div className="bg-slate-800/80 rounded-2xl rounded-tl-none p-3 text-xs text-slate-300 leading-relaxed border border-slate-700/60">
-                Assalomu alaykum! Kurslarimiz, narxlar yoki o'qish tartibi haqida qanday savolingiz bor? Yozib qoldiring, mutaxassisimiz darhol javob beradi.
+                Assalomu alaykum! Arxitektura, bino loyihalash yoki interyer dizayn bo'yicha qanday savolingiz bor? Yozib qoldiring, bosh arxitektorimiz siz bilan bog'lanadi.
               </div>
             </div>
 

@@ -128,20 +128,20 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({ slug, onNavigate
         </div>
 
         {/* Banner CTA inside article */}
-        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl text-white">
+        <div className="mt-12 p-8 rounded-3xl bg-slate-900 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl text-white">
           <div>
             <h3 className="text-xl font-bold font-heading text-white mb-1">
-              Ushbu sohani chuqur o'rganmoqchimisiz?
+              O'z loyihangizni boshlashga tayyormisiz?
             </h3>
-            <p className="text-xs sm:text-sm text-slate-200">
-              Bepul sinov darsiga yoziling va amaliy tajriba orttiring!
+            <p className="text-xs sm:text-sm text-slate-300">
+              Bosh arxitektorimiz bilan bepul birlamchi konsultatsiya va obyekt tahlilini rejalashtiring.
             </p>
           </div>
           <button
             onClick={() => openLeadModal()}
-            className="shrink-0 px-6 py-3 rounded-xl bg-white text-indigo-700 font-bold text-xs hover:bg-slate-50 shadow-lg"
+            className="shrink-0 px-6 py-3 rounded-xl bg-white text-slate-900 font-bold text-xs hover:bg-slate-100 shadow-lg cursor-pointer"
           >
-            Kursga Yozilish
+            Bepul Konsultatsiya Olish
           </button>
         </div>
       </div>

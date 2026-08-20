@@ -40,10 +40,10 @@ export const ReviewsManager: React.FC = () => {
         <div>
           <h1 className="text-xl sm:text-2xl font-bold font-heading text-white flex items-center gap-2">
             <Quote className="w-6 h-6 text-amber-400" />
-            <span>Talabalar Fikrlari (Otzivlar) Moderatsiyasi</span>
+            <span>Mijozlar Fikrlari (Otzivlar) Moderatsiyasi</span>
           </h1>
           <p className="text-xs text-slate-400 mt-1">
-            Saytda chiqadigan fikrlarni tasdiqlash, tahrirlash va yangi sharh qo'shish
+            Saytda chiqadigan mijozlar fikrlarini tasdiqlash, tahrirlash va yangi sharh qo'shish
           </p>
         </div>
 
@@ -100,7 +100,7 @@ export const ReviewsManager: React.FC = () => {
                 <div className="font-heading font-bold text-xs text-white">{r.name}</div>
                 <div className="text-[10px] text-indigo-400">{r.projectTitle}</div>
                 {r.company && (
-                  <div className="text-[9px] text-slate-500">{r.clientRole} ({r.company})</div>
+                  <div className="text-[9px] text-slate-500">{r.workPosition} ({r.company})</div>
                 )}
               </div>
 
@@ -109,12 +109,12 @@ export const ReviewsManager: React.FC = () => {
                   onClick={() => toggleReviewApproval(r.id)}
                   className={`p-2 rounded-xl text-xs font-bold transition-colors ${
                     r.isApproved
-                      ? 'bg-slate-800 text-slate-400 hover:text-amber-400'
-                      : 'bg-emerald-600 text-white'
+                      ? 'bg-amber-500/10 text-amber-400 hover:bg-amber-500/20'
+                      : 'bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20'
                   }`}
-                  title={r.isApproved ? 'Tasdiqni bekor qilish' : 'Saytda e\'lon qilish'}
+                  title={r.isApproved ? 'Yashirish' : 'Tasdiqlash'}
                 >
-                  <CheckCircle className="w-4 h-4" />
+                  {r.isApproved ? <XCircle className="w-4 h-4" /> : <CheckCircle className="w-4 h-4" />}
                 </button>
                 <button
                   onClick={() => {
@@ -122,7 +122,8 @@ export const ReviewsManager: React.FC = () => {
                       deleteReview(r.id);
                     }
                   }}
-                  className="p-2 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500 hover:text-white transition-colors"
+                  className="p-2 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 transition-colors"
+                  title="O'chirish"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -134,21 +135,21 @@ export const ReviewsManager: React.FC = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
           <div className="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-800 p-6 shadow-2xl space-y-4">
-            <h3 className="text-lg font-bold font-heading text-white">Yangi Otziv Qo'shish</h3>
+            <h3 className="text-lg font-bold font-heading text-white">Yangi Mijoz Fikrini Qo'shish</h3>
             <form onSubmit={handleCreate} className="space-y-3">
               <input
                 type="text"
                 required
-                placeholder="Talaba ismi *"
+                placeholder="Mijoz ismi *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none"
+                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-indigo-500"
               />
               <input
                 type="text"
-                placeholder="Kurs nomi *"
+                placeholder="Loyiha nomi (masalan: Modern Oasis Villa) *"
                 value={courseTitle}
                 onChange={(e) => setCourseTitle(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none"
