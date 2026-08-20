@@ -16,13 +16,23 @@ export const TestimonialsSection: React.FC = () => {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(5);
 
+  const avatarList = [
+    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+    'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
+    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80'
+  ];
+
   const handleAddReview = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !comment.trim()) return;
 
+    const randomAvatar = avatarList[Math.floor(Math.random() * avatarList.length)];
+
     addReview({
       name: name.trim(),
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+      avatar: randomAvatar,
       courseTitle: courseTitle.trim() || 'Al-Hakim At-Termeziy kursi',
       company: company.trim(),
       workPosition: workPosition.trim(),
@@ -36,6 +46,7 @@ export const TestimonialsSection: React.FC = () => {
     setCompany('');
     setWorkPosition('');
     setComment('');
+    setRating(5);
   };
 
   return (
@@ -118,8 +129,14 @@ export const TestimonialsSection: React.FC = () => {
 
       {/* Review Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in">
-          <div className="w-full max-w-md rounded-3xl bg-white border border-slate-200 p-6 shadow-2xl space-y-4">
+        <div 
+          onClick={() => setShowAddModal(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-md rounded-3xl bg-white border border-slate-200 p-6 shadow-2xl space-y-4"
+          >
             <h3 className="text-lg font-bold font-heading text-slate-900">Fikr qoldirish</h3>
             <form onSubmit={handleAddReview} className="space-y-3">
               <input

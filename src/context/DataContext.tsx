@@ -273,10 +273,22 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       ...reviewData,
       id: 'r_' + Date.now(),
       date: new Date().toLocaleDateString('uz-UZ'),
-      isApproved: false // Requires admin moderation
+      isApproved: true // Instantly display on website
     };
     setReviews((prev) => [newRev, ...prev]);
-    showToast('Fikringiz uchun rahmat! Moderator tekshiruvidan so\'ng saytda e\'lon qilinadi.', 'success');
+
+    // Shoot celebratory confetti
+    try {
+      confetti({
+        particleCount: 70,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
+    } catch {
+      // ignore
+    }
+
+    showToast('Fikringiz muvaffaqiyatli qabul qilindi va e\'lon qilindi!', 'success');
   };
 
   const toggleReviewApproval = (id: string) => {
