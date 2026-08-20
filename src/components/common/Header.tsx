@@ -22,10 +22,11 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
-  const { settings, openLeadModal, courses } = useData();
+  const { openLeadModal, courses } = useData();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState<'UZ' | 'RU' | 'ENG'>('UZ');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,12 +37,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   }, []);
 
   const navLinks = [
-    { id: 'home', label: 'Bosh sahifa', icon: <GraduationCap className="w-4 h-4" /> },
-    { id: 'courses', label: 'Kurslar', icon: <Layers className="w-4 h-4" />, hasDropdown: true },
-    { id: 'teachers', label: "O'qituvchilar", icon: <Users className="w-4 h-4" /> },
-    { id: 'about', label: 'Biz haqimizda', icon: <Info className="w-4 h-4" /> },
-    { id: 'blog', label: 'Blog & Yangiliklar', icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'contact', label: 'Aloqa', icon: <Mail className="w-4 h-4" /> },
+    { id: 'home', label: currentLang === 'UZ' ? 'Bosh sahifa' : currentLang === 'RU' ? 'Главная' : 'Home', icon: <GraduationCap className="w-4 h-4" /> },
+    { id: 'courses', label: currentLang === 'UZ' ? 'Kurslar' : currentLang === 'RU' ? 'Курсы' : 'Courses', icon: <Layers className="w-4 h-4" />, hasDropdown: true },
+    { id: 'teachers', label: currentLang === 'UZ' ? "O'qituvchilar" : currentLang === 'RU' ? 'Преподаватели' : 'Mentors', icon: <Users className="w-4 h-4" /> },
+    { id: 'about', label: currentLang === 'UZ' ? 'Biz haqimizda' : currentLang === 'RU' ? 'О нас' : 'About Us', icon: <Info className="w-4 h-4" /> },
+    { id: 'blog', label: currentLang === 'UZ' ? 'Blog & Yangiliklar' : currentLang === 'RU' ? 'Блог' : 'Blog', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'contact', label: currentLang === 'UZ' ? 'Aloqa' : currentLang === 'RU' ? 'Контакты' : 'Contact', icon: <Mail className="w-4 h-4" /> },
   ];
 
   return (
@@ -159,16 +160,23 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
           {/* Action CTAs */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
-            {/* Phone (never wrap) */}
-            <a 
-              href={`tel:${settings.phoneMain.replace(/\s+/g, '')}`}
-              className="flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-indigo-400 transition-colors py-2 px-3 rounded-lg hover:bg-slate-900/60 whitespace-nowrap shrink-0"
-            >
-              <div className="w-7 h-7 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-indigo-400 shrink-0">
-                <Phone className="w-3.5 h-3.5" />
-              </div>
-              <span className="hidden xl:inline font-mono tracking-tight whitespace-nowrap">{settings.phoneMain}</span>
-            </a>
+            {/* Language Switcher (UZ / RU / ENG) */}
+            <div className="flex items-center bg-slate-900/90 border border-slate-800 rounded-xl p-1 text-[11px] font-bold shadow-inner">
+              {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setCurrentLang(lang)}
+                  className={`px-2.5 py-1 rounded-lg transition-all ${
+                    currentLang === lang
+                      ? 'bg-indigo-600 text-white shadow-md'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  }`}
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
 
             {/* Consultation button */}
             <button
@@ -178,7 +186,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl transition-all duration-300 group-hover:opacity-90"></span>
               <span className="relative flex items-center gap-2 px-4 py-2.5 rounded-[11px] bg-slate-950/80 backdrop-blur-sm text-white group-hover:bg-transparent transition-all whitespace-nowrap">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-                <span>Bepul Konsultatsiya</span>
+                <span>{currentLang === 'UZ' ? 'Bepul Konsultatsiya' : currentLang === 'RU' ? 'Консультация' : 'Get Consultation'}</span>
               </span>
             </button>
 
@@ -195,9 +203,27 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
+            {/* Mobile Language switch */}
+            <div className="flex items-center bg-slate-900/90 border border-slate-800 rounded-lg p-0.5 text-[10px] font-bold">
+              {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setCurrentLang(lang)}
+                  className={`px-1.5 py-0.5 rounded transition-all ${
+                    currentLang === lang
+                      ? 'bg-indigo-600 text-white'
+                      : 'text-slate-400'
+                  }`}
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
+
             <button
               onClick={() => openLeadModal()}
-              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 whitespace-nowrap"
+              className="px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 whitespace-nowrap"
             >
               Yozilish
             </button>
@@ -212,7 +238,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           </div>
         </div>
       </div>
-
 
       {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
@@ -241,18 +266,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           </div>
 
           <div className="mt-8 pt-6 border-t border-slate-800/80 space-y-4">
-            <div className="bg-slate-900/80 rounded-2xl p-4 border border-slate-800">
-              <div className="text-xs text-slate-400 mb-1">Tezkor Bog'lanish:</div>
-              <a 
-                href={`tel:${settings.phoneMain.replace(/\s+/g, '')}`}
-                className="text-sm sm:text-base font-bold text-indigo-400 flex items-center gap-2 whitespace-nowrap font-mono"
-              >
-                <Phone className="w-4 h-4 shrink-0" />
-                <span>{settings.phoneMain}</span>
-              </a>
-              <div className="text-xs text-slate-500 mt-1">{settings.workingHours}</div>
-            </div>
-
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => {
@@ -280,4 +293,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
     </header>
   );
 };
+
+
 
