@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { Sparkles, ArrowRight, ChevronLeft, ChevronRight, CheckCircle2, Award, Users, BookOpen } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle2, Award, Users, BookOpen } from 'lucide-react';
+import { TelegramIcon } from '../common/SocialIcons';
 
 interface HeroSliderProps {
   onNavigate: (page: string, param?: string) => void;
 }
 
 export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
-  const { banners, openLeadModal } = useData();
+  const { banners, settings } = useData();
   const { t } = useLanguage();
   const activeBanners = banners.filter((b) => b.isActive);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -25,13 +26,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
 
   const current = activeBanners[currentIdx] || activeBanners[0];
 
-  const handlePrev = () => {
-    setCurrentIdx((prev) => (prev === 0 ? activeBanners.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIdx((prev) => (prev + 1) % activeBanners.length);
-  };
+  const telegramUrl = settings?.telegramLink || 'https://t.me/al_hakim_at_termeziy';
 
   return (
     <section className="relative min-h-[90vh] sm:min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
@@ -68,13 +63,16 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              <button
-                onClick={() => openLeadModal()}
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold text-base shadow-2xl shadow-indigo-600/40 hover:shadow-indigo-600/60 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
+              <a
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white font-bold text-base shadow-2xl shadow-sky-500/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 group"
               >
-                <span>{t('hero.cta1', current.ctaText)}</span>
+                <TelegramIcon className="w-5 h-5 text-white shrink-0" />
+                <span>{t('hero.contactTelegram', 'Bizga murojaat qiling')}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
 
               <button
                 onClick={() => onNavigate('courses')}
@@ -123,49 +121,17 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
                     <div className="text-xs font-semibold text-indigo-400">{t('hero.resultGuarantee', 'Natija Kafolati')}</div>
                     <div className="text-xs font-bold text-white line-clamp-1">{current.statsText}</div>
                   </div>
-                  <button
-                    onClick={() => openLeadModal()}
-                    className="shrink-0 px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500"
+                  <a
+                    href={telegramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 px-3.5 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-md shadow-sky-600/30"
                   >
-                    {t('hero.enroll', 'Yozilish')}
-                  </button>
+                    <TelegramIcon className="w-3.5 h-3.5" />
+                    <span>Telegram</span>
+                  </a>
                 </div>
               </div>
-
-              {/* Slider Controls */}
-              {activeBanners.length > 1 && (
-                <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center gap-1.5">
-                    {activeBanners.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentIdx(idx)}
-                        className={`h-2 rounded-full transition-all ${
-                          currentIdx === idx ? 'w-8 bg-indigo-500' : 'w-2 bg-slate-700 hover:bg-slate-600'
-                        }`}
-                        aria-label={`Slayd ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={handlePrev}
-                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
-                      aria-label="Oldingi"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
-                      aria-label="Keyingi"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

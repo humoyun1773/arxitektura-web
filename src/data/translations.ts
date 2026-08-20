@@ -1,4 +1,4 @@
-﻿export type Language = 'UZ' | 'RU' | 'ENG';
+export type Language = 'UZ' | 'RU' | 'ENG';
 
 export const translations: Record<Language, Record<string, string>> = {
   UZ: {
@@ -22,7 +22,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'hero.title1': 'INTIZOMNI SEVUVCHILAR UCHUN',
     'hero.highlight1': "28 Oylik Ta'lim Kombinatsiyalari",
     'hero.subtitle1': "28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkurga ega bo'ling. Kursni muvaffaqiyatli tugatgan iqtidorli talabalar to'liq ish bilan ta'minlanadi.",
-    'hero.cta1': 'Kurslarga Yozilish',
+    'hero.cta1': 'Bizga murojaat qiling',
+    'hero.contactTelegram': 'Bizga murojaat qiling',
     'hero.allCoursesBtn': 'Barcha Kurslar',
     'hero.feature1': '100% Amaliy loyihalar',
     'hero.feature2': 'Rasmiy diplom & sertifikat',
@@ -137,7 +138,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'hero.title1': 'ДЛЯ ТЕХ, КТО ЦЕНИТ ДИСЦИПЛИНУ',
     'hero.highlight1': '28-Месячные Образовательные Комбинации',
     'hero.subtitle1': 'Овладейте мышлением на 4 иностранных языках по уникальной 28-месячной системе. Выпускники центра на 100% обеспечиваются трудоустройством.',
-    'hero.cta1': 'Записаться на Курс',
+    'hero.cta1': 'Связаться с нами',
+    'hero.contactTelegram': 'Связаться с нами',
     'hero.allCoursesBtn': 'Все Курсы',
     'hero.feature1': '100% Практические проекты',
     'hero.feature2': 'Официальный диплом и сертификат',
@@ -252,7 +254,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'hero.title1': 'FOR THOSE WHO VALUE DISCIPLINE',
     'hero.highlight1': '28-Month Educational Combinations',
     'hero.subtitle1': 'Master mindset and fluency in 4 international languages with our 28-month system. Successful graduates are 100% provided with employment.',
-    'hero.cta1': 'Enroll in Courses',
+    'hero.cta1': 'Contact Us',
+    'hero.contactTelegram': 'Contact Us',
     'hero.allCoursesBtn': 'All Courses',
     'hero.feature1': '100% Practical Projects',
     'hero.feature2': 'Official Diploma & Certificate',
