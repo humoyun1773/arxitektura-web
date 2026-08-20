@@ -12,9 +12,9 @@ import {
   Users, 
   Calculator, 
   BookOpen, 
-  MessageSquare,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Globe
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -22,12 +22,19 @@ interface HeaderProps {
   onNavigate: (page: string, param?: string) => void;
 }
 
+const langData = {
+  UZ: { flag: '🇺🇿', name: "O'zbekcha", short: 'UZ' },
+  RU: { flag: '🇷🇺', name: 'Русский', short: 'RU' },
+  ENG: { flag: '🇬🇧', name: 'English', short: 'EN' }
+} as const;
+
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
-  const { openLeadModal, settings } = useData();
+  const { settings } = useData();
   const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
+  const [isMobileLangOpen, setIsMobileLangOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +69,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
     { id: 'architects', label: t('nav.architects', 'Arxitektorlar'), icon: <Users className="w-4 h-4" /> },
     { id: 'calculator', label: t('nav.calculator', 'Kalkulyator'), icon: <Calculator className="w-4 h-4" /> },
     { id: 'blog', label: t('nav.blog', 'Blog'), icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'contact', label: t('nav.contact', "Bog'lanish"), icon: <MessageSquare className="w-4 h-4" /> },
   ];
 
   const projectCategories = [
@@ -185,32 +191,34 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               })}
             </nav>
 
-            {/* Right actions: Language & CTA */}
+            {/* Right actions: Language + Mobile toggle */}
             <div className="flex items-center gap-2 sm:gap-3">
-              {/* Language Switcher */}
-              <div className="flex items-center p-1 rounded-xl bg-slate-100 border border-slate-200">
+              {/* Desktop Language Switcher */}
+              <div className="hidden sm:flex items-center p-1 rounded-xl bg-slate-100 border border-slate-200">
                 {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
                   <button
                     key={lang}
                     onClick={() => setLanguage(lang)}
-                    className={`px-2 sm:px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all ${
+                    className={`px-2 sm:px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all flex items-center gap-1.5 ${
                       language === lang
                         ? 'bg-white text-slate-900 shadow-sm border border-slate-200/50'
                         : 'text-slate-500 hover:text-slate-900'
                     }`}
                   >
-                    {lang}
+                    <span>{langData[lang].flag}</span>
+                    <span>{lang}</span>
                   </button>
                 ))}
               </div>
 
-              {/* CTA Order Button */}
+              {/* Mobile Language Button (current language indicator) */}
               <button
-                onClick={() => openLeadModal()}
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold shadow-md shadow-slate-900/10 hover:shadow-lg transition-all"
+                onClick={() => setIsMobileLangOpen(!isMobileLangOpen)}
+                className="sm:hidden flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-700"
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{t('nav.orderProject', 'Loyiha Buyurtma Qilish')}</span>
+                <span className="text-sm">{langData[language].flag}</span>
+                <span className="text-[11px] font-bold">{language}</span>
+                <ChevronDown className={`w-3 h-3 transition-transform ${isMobileLangOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {/* Mobile Hamburger Toggle */}
@@ -223,6 +231,44 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               </button>
             </div>
           </div>
+
+          {/* Mobile Language Dropdown (below header) */}
+          {isMobileLangOpen && (
+            <div className="sm:hidden mt-3 animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="bg-white rounded-2xl border border-slate-200 p-2 shadow-lg">
+                <div className="px-3 py-1.5 mb-1">
+                  <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider flex items-center gap-1.5">
+                    <Globe className="w-3 h-3" />
+                    {t('nav.selectLanguage', 'Tilni tanlang')}
+                  </span>
+                </div>
+                <div className="space-y-1">
+                  {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => {
+                        setLanguage(lang);
+                        setIsMobileLangOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                        language === lang
+                          ? 'bg-slate-900 text-white shadow-md'
+                          : 'text-slate-700 hover:bg-slate-100'
+                      }`}
+                    >
+                      <span className="text-lg">{langData[lang].flag}</span>
+                      <div className="flex-1 text-left">
+                        <div className="text-xs font-bold">{langData[lang].name}</div>
+                      </div>
+                      {language === lang && (
+                        <div className="w-2 h-2 rounded-full bg-white" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </header>
 
@@ -255,24 +301,38 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
           {/* Scrollable Navigation */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 bg-slate-50/50">
-            {/* Language Selector */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-3.5 shadow-sm">
-              <div className="text-xs font-semibold text-slate-500 mb-2 px-1">
-                {t('nav.selectLanguage', 'Tilni tanlang:')}
+            {/* Language Selector - Full Mobile Version */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-3 px-1">
+                <Globe className="w-3.5 h-3.5" />
+                <span>{t('nav.selectLanguage', 'Tilni tanlang')}</span>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-1.5">
                 {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
                   <button
                     key={lang}
                     type="button"
                     onClick={() => setLanguage(lang)}
-                    className={`py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center ${
+                    className={`w-full flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                       language === lang
                         ? 'bg-slate-900 text-white shadow-md'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                        : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200'
                     }`}
                   >
-                    {lang}
+                    <span className="text-xl">{langData[lang].flag}</span>
+                    <div className="flex-1 text-left">
+                      <div className="text-sm font-bold">{langData[lang].name}</div>
+                      <div className={`text-[10px] ${language === lang ? 'text-slate-300' : 'text-slate-500'}`}>
+                        {lang === 'UZ' && 'Sayt tilini o\'zbekchaga o\'zgartirish'}
+                        {lang === 'RU' && 'Переключить язык на русский'}
+                        {lang === 'ENG' && 'Switch site language to English'}
+                      </div>
+                    </div>
+                    {language === lang && (
+                      <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                        <div className="w-2.5 h-2.5 rounded-full bg-white" />
+                      </div>
+                    )}
                   </button>
                 ))}
               </div>
@@ -298,18 +358,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                 </button>
               ))}
             </div>
-
-            {/* CTA in mobile */}
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                openLeadModal();
-              }}
-              className="w-full py-3.5 rounded-2xl bg-slate-900 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg"
-            >
-              <Sparkles className="w-4 h-4" />
-              <span>{t('nav.orderProject', 'Loyiha Buyurtma Qilish')}</span>
-            </button>
 
             {/* Studio Info Box */}
             <div className="p-4 rounded-2xl bg-white border border-slate-200 text-xs space-y-2 text-slate-600 shadow-sm">
