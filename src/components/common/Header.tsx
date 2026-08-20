@@ -26,7 +26,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState<'UZ' | 'RU' | 'EN'>('UZ');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,12 +36,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   }, []);
 
   const navLinks = [
-    { id: 'home', label: currentLang === 'UZ' ? 'Bosh sahifa' : currentLang === 'RU' ? 'Главная' : 'Home', icon: <GraduationCap className="w-4 h-4" /> },
-    { id: 'courses', label: currentLang === 'UZ' ? 'Kurslar' : currentLang === 'RU' ? 'Курсы' : 'Courses', icon: <Layers className="w-4 h-4" />, hasDropdown: true },
-    { id: 'teachers', label: currentLang === 'UZ' ? "O'qituvchilar" : currentLang === 'RU' ? 'Преподаватели' : 'Mentors', icon: <Users className="w-4 h-4" /> },
-    { id: 'about', label: currentLang === 'UZ' ? 'Biz haqimizda' : currentLang === 'RU' ? 'О нас' : 'About Us', icon: <Info className="w-4 h-4" /> },
-    { id: 'blog', label: currentLang === 'UZ' ? 'Blog' : currentLang === 'RU' ? 'Блог' : 'Blog', icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'contact', label: currentLang === 'UZ' ? 'Aloqa' : currentLang === 'RU' ? 'Контакты' : 'Contact', icon: <Mail className="w-4 h-4" /> },
+    { id: 'home', label: 'Bosh sahifa', icon: <GraduationCap className="w-4 h-4" /> },
+    { id: 'courses', label: 'Kurslar', icon: <Layers className="w-4 h-4" />, hasDropdown: true },
+    { id: 'teachers', label: "O'qituvchilar", icon: <Users className="w-4 h-4" /> },
+    { id: 'about', label: 'Biz haqimizda', icon: <Info className="w-4 h-4" /> },
+    { id: 'blog', label: 'Blog & Yangiliklar', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'contact', label: 'Aloqa', icon: <Mail className="w-4 h-4" /> },
   ];
 
   return (
@@ -73,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 shrink-0">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0">
             {navLinks.map((link) => {
               if (link.hasDropdown) {
                 return (
@@ -159,11 +158,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           </nav>
 
           {/* Action CTAs */}
-          <div className="hidden sm:flex items-center gap-2 xl:gap-3 shrink-0">
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
             {/* Phone (never wrap) */}
             <a 
               href={`tel:${settings.phoneMain.replace(/\s+/g, '')}`}
-              className="flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-indigo-400 transition-colors py-2 px-2.5 rounded-lg hover:bg-slate-900/60 whitespace-nowrap shrink-0"
+              className="flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-indigo-400 transition-colors py-2 px-3 rounded-lg hover:bg-slate-900/60 whitespace-nowrap shrink-0"
             >
               <div className="w-7 h-7 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-indigo-400 shrink-0">
                 <Phone className="w-3.5 h-3.5" />
@@ -171,33 +170,15 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               <span className="hidden xl:inline font-mono tracking-tight whitespace-nowrap">{settings.phoneMain}</span>
             </a>
 
-            {/* Language switch (UZ / RU / EN) */}
-            <div className="flex items-center bg-slate-900/90 border border-slate-800 rounded-xl p-0.5 text-[11px] font-bold shrink-0 shadow-inner">
-              {(['UZ', 'RU', 'EN'] as const).map((lang) => (
-                <button
-                  key={lang}
-                  type="button"
-                  onClick={() => setCurrentLang(lang)}
-                  className={`px-2 py-1 rounded-lg transition-all ${
-                    currentLang === lang
-                      ? 'bg-indigo-600 text-white shadow-md'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                  }`}
-                >
-                  {lang}
-                </button>
-              ))}
-            </div>
-
             {/* Consultation button */}
             <button
               onClick={() => openLeadModal()}
               className="relative group overflow-hidden rounded-xl p-[1px] font-semibold text-xs tracking-wide focus:outline-none shrink-0"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl transition-all duration-300 group-hover:opacity-90"></span>
-              <span className="relative flex items-center gap-1.5 px-3.5 py-2.5 rounded-[11px] bg-slate-950/80 backdrop-blur-sm text-white group-hover:bg-transparent transition-all whitespace-nowrap">
+              <span className="relative flex items-center gap-2 px-4 py-2.5 rounded-[11px] bg-slate-950/80 backdrop-blur-sm text-white group-hover:bg-transparent transition-all whitespace-nowrap">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-                <span>{currentLang === 'UZ' ? 'Bepul Konsultatsiya' : currentLang === 'RU' ? 'Консультация' : 'Get Consultation'}</span>
+                <span>Bepul Konsultatsiya</span>
               </span>
             </button>
 
@@ -214,27 +195,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 lg:hidden">
-            {/* Mobile Language switch */}
-            <div className="flex items-center bg-slate-900/90 border border-slate-800 rounded-lg p-0.5 text-[10px] font-bold">
-              {(['UZ', 'RU', 'EN'] as const).map((lang) => (
-                <button
-                  key={lang}
-                  type="button"
-                  onClick={() => setCurrentLang(lang)}
-                  className={`px-1.5 py-0.5 rounded transition-all ${
-                    currentLang === lang
-                      ? 'bg-indigo-600 text-white'
-                      : 'text-slate-400'
-                  }`}
-                >
-                  {lang}
-                </button>
-              ))}
-            </div>
-
             <button
               onClick={() => openLeadModal()}
-              className="px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 whitespace-nowrap"
+              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 whitespace-nowrap"
             >
               Yozilish
             </button>
@@ -249,6 +212,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           </div>
         </div>
       </div>
+
 
       {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
