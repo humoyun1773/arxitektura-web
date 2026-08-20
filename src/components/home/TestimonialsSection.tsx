@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { Star, Quote, Sparkles, Building2, User, PlusCircle } from 'lucide-react';
 
 export const TestimonialsSection: React.FC = () => {
   const { reviews, addReview } = useData();
+  const { t } = useLanguage();
   const approvedReviews = reviews.filter((r) => r.isApproved);
 
   const [showAddModal, setShowAddModal] = useState(false);
@@ -21,7 +23,7 @@ export const TestimonialsSection: React.FC = () => {
     addReview({
       name: name.trim(),
       avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
-      courseTitle: courseTitle.trim() || 'Arxitektura kursi',
+      courseTitle: courseTitle.trim() || 'Al-Hakim At-Termeziy kursi',
       company: company.trim(),
       workPosition: workPosition.trim(),
       comment: comment.trim(),
@@ -44,13 +46,13 @@ export const TestimonialsSection: React.FC = () => {
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              Talabalar Fikrlari
+              {t('reviews.badge', "O'quvchilarimiz Fikrlari")}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
-              Bitiruvchilarimiz <span className="gradient-text">Nima Deyishadi?</span>
+              {t('reviews.title', "Bitiruvchilar Natijalari va Sharhlari")}
             </h2>
             <p className="text-sm sm:text-base text-slate-400 max-w-xl">
-              Minglab talabalarimiz o'z orzularidagi kasbga ega bo'lib, nufuzli kompaniyalarda muvaffaqiyatli ishlamoqda.
+              {t('reviews.subtitle', "Bizning o'quv markazimizda tahsil olgan talabalarning samimiy fikrlari.")}
             </p>
           </div>
 

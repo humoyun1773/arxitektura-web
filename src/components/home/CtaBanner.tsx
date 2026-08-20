@@ -1,9 +1,11 @@
 import React from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { Sparkles, ArrowRight, ShieldCheck, PhoneCall } from 'lucide-react';
 
 export const CtaBanner: React.FC = () => {
   const { openLeadModal, settings } = useData();
+  const { t } = useLanguage();
 
   return (
     <section className="py-20 relative overflow-hidden">
@@ -16,15 +18,15 @@ export const CtaBanner: React.FC = () => {
           <div className="relative z-10 max-w-3xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold backdrop-blur-md">
               <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-              <span>Orzuingizdagi Karyera 1 Qadam Narida</span>
+              <span>{t('cta.badge', 'Qabul Ochiq')}</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
-              Qaysi Yo'nalish Sizga Mos Kelishini Bilmayapsizmi?
+              {t('cta.title', 'Kelajagingizni Biz Bilan Birga Quring!')}
             </h2>
 
             <p className="text-sm sm:text-lg text-slate-200 leading-relaxed">
-              Bizning mutaxassislarimiz bilan bepul diagnostika va individual yo'l xaritasi (Roadmap) tuzish uchun ro'yxatdan o'ting!
+              {t('cta.subtitle', "28 oylik ta'lim kombinatsiyalariga ro'yxatdan o'ting va 4 ta til egasi bo'ling. Hoziroq ariza qoldiring!")}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
@@ -32,7 +34,7 @@ export const CtaBanner: React.FC = () => {
                 onClick={() => openLeadModal()}
                 className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-slate-950 hover:bg-slate-100 font-extrabold text-sm sm:text-base shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group"
               >
-                <span>Bepul Konsultatsiya Olish</span>
+                <span>{t('cta.btn', 'Bepul Konsultatsiya Olish')}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -47,7 +49,7 @@ export const CtaBanner: React.FC = () => {
 
             <div className="flex items-center gap-2 text-xs text-indigo-200/80 pt-2">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Konsultatsiya mutlaqo bepul va hech qanday majburiyatsiz.</span>
+              <span>{t('modal.privacy', "Ma'lumotlaringiz xavfsizligi 100% kafolatlanadi.")}</span>
             </div>
           </div>
         </div>

@@ -1,39 +1,42 @@
 import React from 'react';
-import { Users, GraduationCap, Briefcase, Award } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+import { Users, Globe2, Briefcase, Award } from 'lucide-react';
 
 export const StatsSection: React.FC = () => {
+  const { t } = useLanguage();
+
   const stats = [
     {
       id: 1,
-      value: '12,500+',
-      label: 'Muvaffaqiyatli Bitiruvchilar',
-      desc: 'O\'zbekiston va xorijda faoliyat yuritmoqda',
-      icon: <GraduationCap className="w-6 h-6 text-indigo-400" />,
+      value: '3,200+',
+      label: t('stats.students', "O'quvchilar Soni"),
+      desc: t('stats.studentsDesc', "Muvaffaqiyatli tahsil olgan va o'qiyotgan yoshlar"),
+      icon: <Users className="w-6 h-6 text-indigo-400" />,
       gradient: 'from-indigo-500/20 to-purple-500/5'
     },
     {
       id: 2,
-      value: '94%',
-      label: 'Ish bilan ta\'minlanganlik',
-      desc: 'Bitirgandan so\'ng 3 oy ichida ish topish ko\'rsatkichi',
+      value: '4 Til',
+      label: t('stats.languages', 'Xalqaro Tillar'),
+      desc: t('stats.languagesDesc', 'Ingliz, Nemis, Xitoy, Koreys, Yapon, Fors, Rus'),
+      icon: <Globe2 className="w-6 h-6 text-sky-400" />,
+      gradient: 'from-sky-500/20 to-indigo-500/5'
+    },
+    {
+      id: 3,
+      value: '100%',
+      label: t('stats.employment', "Ish Bilan Ta'minlash"),
+      desc: t('stats.employmentDesc', '28 oylik dastur bitiruvchilariga kafolat'),
       icon: <Briefcase className="w-6 h-6 text-emerald-400" />,
       gradient: 'from-emerald-500/20 to-teal-500/5'
     },
     {
-      id: 3,
-      value: '10+ Yil',
-      label: 'Ta\'lim Tajribasi',
-      desc: 'Sinalgan metodika va doimiy yangilanib boruvchi dastur',
+      id: 4,
+      value: '12+ Yil',
+      label: t('stats.experience', 'Yillik Tajriba'),
+      desc: t('stats.experienceDesc', "Sifatli va qat'iy intizomli ta'lim tizimi"),
       icon: <Award className="w-6 h-6 text-amber-400" />,
       gradient: 'from-amber-500/20 to-orange-500/5'
-    },
-    {
-      id: 4,
-      value: '25+',
-      label: 'Yetakchi Mutaxassislar',
-      desc: 'Xalqaro toifadagi amaliyotchi instruktorlar',
-      icon: <Users className="w-6 h-6 text-pink-400" />,
-      gradient: 'from-pink-500/20 to-rose-500/5'
     }
   ];
 

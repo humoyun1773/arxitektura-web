@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { 
   Phone, 
   Menu, 
@@ -22,11 +23,11 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
-  const { courses, openLeadModal } = useData();
+  const { courses } = useData();
+  const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCoursesDropdownOpen, setIsCoursesDropdownOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState<'UZ' | 'RU' | 'ENG'>('UZ');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,11 +50,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { id: 'home', label: currentLang === 'UZ' ? 'Bosh sahifa' : currentLang === 'RU' ? 'Главная' : 'Home', icon: <GraduationCap className="w-4 h-4" /> },
-    { id: 'courses', label: currentLang === 'UZ' ? 'Kurslar' : currentLang === 'RU' ? 'Курсы' : 'Courses', icon: <Layers className="w-4 h-4" />, hasDropdown: true },
-    { id: 'teachers', label: currentLang === 'UZ' ? "O'qituvchilar" : currentLang === 'RU' ? 'Преподаватели' : 'Mentors', icon: <Users className="w-4 h-4" /> },
-    { id: 'about', label: currentLang === 'UZ' ? 'Biz haqimizda' : currentLang === 'RU' ? 'О нас' : 'About Us', icon: <Info className="w-4 h-4" /> },
-    { id: 'blog', label: currentLang === 'UZ' ? 'Blog & Yangiliklar' : currentLang === 'RU' ? 'Блог' : 'Blog', icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'home', label: t('nav.home', 'Bosh sahifa'), icon: <GraduationCap className="w-4 h-4" /> },
+    { id: 'courses', label: t('nav.courses', 'Kurslar'), icon: <Layers className="w-4 h-4" />, hasDropdown: true },
+    { id: 'teachers', label: t('nav.teachers', "O'qituvchilar"), icon: <Users className="w-4 h-4" /> },
+    { id: 'about', label: t('nav.about', 'Biz haqimizda'), icon: <Info className="w-4 h-4" /> },
+    { id: 'blog', label: t('nav.blog', 'Blog & Yangiliklar'), icon: <BookOpen className="w-4 h-4" /> },
   ];
 
   return (
@@ -80,10 +81,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               </div>
               <div>
                 <div className="font-heading font-bold text-sm sm:text-base tracking-tight text-white flex items-center gap-1.5 whitespace-nowrap">
-                  <span>AL-HAKIM AT-TERMEZIY</span>
-                  <span className="text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-mono">MARKAZ</span>
+                  <span>{t('brand.title', 'AL-HAKIM AT-TERMEZIY')}</span>
+                  <span className="text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-mono">{t('brand.badge', 'MARKAZ')}</span>
                 </div>
-                <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium tracking-wide whitespace-nowrap">Intizomni Sevuvchilar Uchun • Qarshi</p>
+                <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium tracking-wide whitespace-nowrap">{t('brand.slogan', 'Intizomni Sevuvchilar Uchun • Qarshi')}</p>
               </div>
             </button>
 
@@ -115,7 +116,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                         <div className="absolute top-full left-0 w-80 pt-2 animate-in fade-in slide-in-from-top-2 duration-200">
                           <div className="bg-slate-900/95 border border-slate-800 rounded-2xl p-3 shadow-2xl backdrop-blur-2xl">
                             <div className="text-[11px] font-semibold text-slate-400 px-3 py-1.5 uppercase tracking-wider">
-                              Asosiy Yo'nalishlar
+                              {t('nav.mainDirections', "Asosiy Yo'nalishlar")}
                             </div>
                             <div className="space-y-1">
                               {courses.slice(0, 5).map((course) => (
@@ -133,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                                       {course.title}
                                     </div>
                                     <div className="text-[11px] text-slate-500">
-                                      {course.durationMonths} oy • {course.level}
+                                      {course.durationMonths} {t('courses.months', 'oy')} • {course.level}
                                     </div>
                                   </div>
                                 </button>
@@ -147,7 +148,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                                 }}
                                 className="w-full text-center py-1.5 text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center justify-center gap-1"
                               >
-                                Barcha kurslarni ko'rish <ArrowRight className="w-3 h-3" />
+                                {t('nav.allCourses', "Barcha kurslarni ko'rish")} <ArrowRight className="w-3 h-3" />
                               </button>
                             </div>
                           </div>
@@ -180,9 +181,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                   <button
                     key={lang}
                     type="button"
-                    onClick={() => setCurrentLang(lang)}
+                    onClick={() => setLanguage(lang)}
                     className={`px-3 py-1.5 rounded-lg transition-all ${
-                      currentLang === lang
+                      language === lang
                         ? 'bg-indigo-600 text-white shadow-md'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800'
                     }`}
@@ -218,10 +219,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               </div>
               <div>
                 <div className="font-heading font-bold text-sm text-white flex items-center gap-1.5">
-                  <span>AL-HAKIM AT-TERMEZIY</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-mono">MARKAZ</span>
+                  <span>{t('brand.title', 'AL-HAKIM AT-TERMEZIY')}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-mono">{t('brand.badge', 'MARKAZ')}</span>
                 </div>
-                <p className="text-[10px] text-slate-400 font-medium tracking-wide">Intizomni Sevuvchilar Uchun • Qarshi</p>
+                <p className="text-[10px] text-slate-400 font-medium tracking-wide">{t('brand.slogan', 'Intizomni Sevuvchilar Uchun • Qarshi')}</p>
               </div>
             </div>
 
@@ -239,16 +240,16 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
             {/* Language Selector */}
             <div className="bg-slate-900/90 border border-slate-800/90 rounded-2xl p-3.5 shadow-sm">
               <div className="text-xs font-semibold text-slate-400 mb-2 px-1">
-                Tilni tanlang / Select Language:
+                {t('nav.selectLanguage', 'Tilni tanlang / Select Language:')}
               </div>
               <div className="grid grid-cols-3 gap-2">
                 {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
                   <button
                     key={lang}
                     type="button"
-                    onClick={() => setCurrentLang(lang)}
+                    onClick={() => setLanguage(lang)}
                     className={`py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center ${
-                      currentLang === lang
+                      language === lang
                         ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
                         : 'bg-slate-800/70 text-slate-300 hover:bg-slate-800 hover:text-white'
                     }`}
@@ -262,7 +263,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
             {/* Menu Links */}
             <div className="space-y-1.5">
               <div className="text-[11px] font-semibold text-slate-500 uppercase px-2 pb-1 tracking-wider">
-                Bo'limlar
+                {t('nav.sections', "Bo'limlar")}
               </div>
               {navLinks.map((link) => (
                 <button

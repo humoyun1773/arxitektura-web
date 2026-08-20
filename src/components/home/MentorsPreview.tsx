@@ -1,5 +1,6 @@
 import React from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { Sparkles, Star, Award, Users, ArrowRight } from 'lucide-react';
 
 interface MentorsPreviewProps {
@@ -8,6 +9,7 @@ interface MentorsPreviewProps {
 
 export const MentorsPreview: React.FC<MentorsPreviewProps> = ({ onNavigate }) => {
   const { teachers } = useData();
+  const { t } = useLanguage();
 
   return (
     <section className="py-20 relative">
@@ -17,13 +19,13 @@ export const MentorsPreview: React.FC<MentorsPreviewProps> = ({ onNavigate }) =>
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              Kuchli Mutaxassislar
+              {t('mentors.badge', 'Bizning Ustozlar')}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
-              Tajribali <span className="gradient-text">Mentorlarimiz</span>
+              {t('mentors.title', 'Kuchli Tajribaga Ega Mutaxassislar')}
             </h2>
             <p className="text-sm sm:text-base text-slate-400 max-w-xl">
-              Darslarni xalqaro kompaniyalarda real loyihalarni bajargan va ko'p yillik amaliy tajribaga ega ustozlar olib boradilar.
+              {t('mentors.subtitle', 'Xalqaro sertifikatlarga ega va chet elda tajriba orttirgan nufuzli murabbiylar jamoasi.')}
             </p>
           </div>
 
@@ -31,7 +33,7 @@ export const MentorsPreview: React.FC<MentorsPreviewProps> = ({ onNavigate }) =>
             onClick={() => onNavigate('teachers')}
             className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-semibold text-sm group"
           >
-            <span>Barcha o'qituvchilar</span>
+            <span>{t('mentors.allMentors', "Barcha O'qituvchilar")}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -60,7 +62,7 @@ export const MentorsPreview: React.FC<MentorsPreviewProps> = ({ onNavigate }) =>
 
                 {/* Exp badge */}
                 <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-indigo-600/90 text-white text-[11px] font-bold backdrop-blur-md">
-                  {teacher.experienceYears}+ yillik tajriba
+                  {teacher.experienceYears}+ {t('mentors.exp', 'yillik tajriba')}
                 </div>
               </div>
 

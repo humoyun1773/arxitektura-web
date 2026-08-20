@@ -1,46 +1,48 @@
 import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import { 
-  Laptop, 
-  Target, 
+  Globe2, 
+  Briefcase, 
   Award, 
-  Compass, 
+  ShieldCheck, 
   Sparkles, 
-  CheckCircle2, 
   TrendingUp, 
-  Headphones 
+  CheckCircle2 
 } from 'lucide-react';
 
 export const FeaturesSection: React.FC = () => {
+  const { t } = useLanguage();
+
   const features = [
     {
-      icon: <Target className="w-6 h-6 text-indigo-400" />,
-      title: "100% Real Amaliyot",
-      desc: "Quruq nazariya emas, dastlabki haftalardan boshlab real binolar va dasturiy ta'minotlar ustida ishlaysiz."
+      icon: <Globe2 className="w-6 h-6 text-indigo-400" />,
+      title: t('features.f1_title', '28 Oylik 4 Til Dasturi'),
+      desc: t('features.f1_desc', 'Dunyo tajribasida sinalgan eng samarali 4 ta xalqaro til integratsiyasi.')
     },
     {
-      icon: <Laptop className="w-6 h-6 text-purple-400" />,
-      title: "Zamonaviy Kompyuter Parki",
-      desc: "3Ds Max va murakkab renderlar uchun kuchli RTX video kartali kompyuterlar bilan ta'minlangan qulay xonalar."
+      icon: <Briefcase className="w-6 h-6 text-emerald-400" />,
+      title: t('features.f2_title', '100% Ish Kafolati'),
+      desc: t('features.f2_desc', 'Kombinatsiyalarni muvaffaqiyatli tamomlagan barcha talabalar ish bilan ta\'minlanadi.')
+    },
+    {
+      icon: <ShieldCheck className="w-6 h-6 text-purple-400" />,
+      title: t('features.f3_title', 'Kuchli Intizom & Nazorat'),
+      desc: t('features.f3_desc', 'Kunlik vazifalar tahlili, reyting tizimi va uzluksiz o\'qituvchilar nazorati.')
     },
     {
       icon: <Award className="w-6 h-6 text-amber-400" />,
-      title: "Xalqaro Diplom & Sertifikat",
-      desc: "Autodesk va IT standartlariga mos rasmiy QR-kodli sertifikat orqali nufuzli kompaniyalarda tan olinish."
+      title: t('features.f4_title', 'Xalqaro Sertifikatlar'),
+      desc: t('features.f4_desc', 'IELTS, Goethe, HSK, TOPIK va JLPT xalqaro imtihonlariga to\'liq tayyorgarlik.')
     },
     {
-      icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
-      title: "Karyera Markazi Ko'magi",
-      desc: "Rezyume tayyorlash, texnik intervyulardan o'tish va yetakchi hamkor kompaniyalarga ishga tavsiya qilish."
+      icon: <TrendingUp className="w-6 h-6 text-sky-400" />,
+      title: t('hero.resultGuarantee', 'Natija Kafolati'),
+      desc: t('hero.internationalCert', 'Xalqaro standartdagi sertifikat va 4 ta tilga muvofiq tafakkur.')
     },
     {
-      icon: <Compass className="w-6 h-6 text-sky-400" />,
-      title: "Shaxsiy Mentorlik Tizimi",
-      desc: "Darsdan tashqari vaqtlarda ham murabbiylar va assistentlar tomonidan uyga vazifalar tekshirilib, yordam beriladi."
-    },
-    {
-      icon: <Headphones className="w-6 h-6 text-pink-400" />,
-      title: "Coworking & Doimiy Muhit",
-      desc: "Talabalarimiz uchun 24/7 ochiq bo'lgan erkin muloqot va o'qish zonasi, bepul internet va qahva."
+      icon: <CheckCircle2 className="w-6 h-6 text-pink-400" />,
+      title: t('hero.feature1', '100% Amaliy Loyihalar'),
+      desc: t('hero.subtitle1', "28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkurga ega bo'ling.")
     }
   ];
 
@@ -51,13 +53,13 @@ export const FeaturesSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            Nega Bizni Tanlashadi?
+            {t('features.badge', 'Nega Aynan Biz?')}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
-            Kelajakdagi Muvaffaqiyatingiz Uchun <span className="gradient-text">Barcha Sharoitlar</span>
+            {t('features.title', "Noyob Metodika va Qat'iy Intizom")}
           </h2>
           <p className="text-sm sm:text-base text-slate-400">
-            Biz shunchaki dars bermaymiz, balki sizni mehnat bozorida yuqori baholanadigan yetuk mutaxassis qilib yetishtiramiz.
+            {t('features.subtitle', "Har bir talabaning individual salohiyatini ochish va xalqaro miqyosda raqobatbardosh kadr qilib yetishtirish bizning asosiy maqsadimizdir.")}
           </p>
         </div>
 

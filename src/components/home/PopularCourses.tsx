@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { Course } from '../../types';
 import { 
   Clock, 
@@ -18,9 +19,17 @@ interface PopularCoursesProps {
 
 export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) => {
   const { courses, openLeadModal } = useData();
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('Hammasi');
 
-  const categories = ['Hammasi', "Ta'lim Kombinatsiyalari", 'Xorijiy Tillar', 'Arxitektura & 3D', 'IT & Dasturlash', 'Grafik Dizayn'];
+  const categories = [
+    { id: 'Hammasi', label: t('courses.all', 'Hammasi') },
+    { id: "Ta'lim Kombinatsiyalari", label: t('courses.combinations', "Ta'lim Kombinatsiyalari") },
+    { id: 'Xorijiy Tillar', label: t('courses.foreignLanguages', 'Xorijiy Tillar') },
+    { id: 'Arxitektura & 3D', label: 'Arxitektura & 3D' },
+    { id: 'IT & Dasturlash', label: 'IT & Dasturlash' },
+    { id: 'Grafik Dizayn', label: 'Grafik Dizayn' }
+  ];
 
   const filteredCourses = courses.filter((c) => {
     if (!c.isActive) return false;
@@ -29,7 +38,7 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
   });
 
   const formatPrice = (price: number) => {
-    return price.toLocaleString('uz-UZ') + " so'm/oy";
+    return `${price.toLocaleString('uz-UZ')} ${t('courses.perMonth', "so'm/oy")}`;
   };
 
   return (
@@ -40,13 +49,13 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-              Talabgir Yo'nalishlar
+              {t('courses.badge', "Ta'lim Yo'nalishlari")}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
-              Professional <span className="gradient-text">O'quv Dasturlari</span>
+              {t('courses.title', "Eng Talabgir Kurslar va Kombinatsiyalar")}
             </h2>
             <p className="text-sm sm:text-base text-slate-400 max-w-xl">
-              Noldan boshlab yuqori daromadli mutaxassis bo'lishingiz uchun eng so'nggi zamonaviy talablar asosida tayyorlangan kurslar.
+              {t('courses.subtitle', "O'zingizga mos ta'lim kombinatsiyasi yoki intensiv 7 oylik til kursini tanlang.")}
             </p>
           </div>
 
@@ -54,7 +63,7 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
             onClick={() => onNavigate('courses')}
             className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-semibold text-sm group"
           >
-            <span>Barcha kurslar katalogi</span>
+            <span>{t('courses.viewAll', "Barcha Kurslar Katalogi")}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -63,15 +72,15 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
           {categories.map((cat) => (
             <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
-                selectedCategory === cat
+                selectedCategory === cat.id
                   ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
                   : 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
         </div>
@@ -119,14 +128,14 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
                   <div className="flex items-center gap-3 text-xs text-slate-400 font-medium">
                     <span className="flex items-center gap-1">
                       <Clock className="w-3.5 h-3.5 text-indigo-400" />
-                      {course.durationMonths} oy
+                      {course.durationMonths} {t('courses.months', 'oy')}
                     </span>
                     <span>•</span>
                     <span className="text-indigo-300">{course.level}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
                       <Users className="w-3.5 h-3.5 text-emerald-400" />
-                      {course.studentsCount}+ talaba
+                      {course.studentsCount}+ {t('mentors.students', "ta o'quvchi")}
                     </span>
                   </div>
 
@@ -175,7 +184,7 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
                     <button
                       onClick={() => onNavigate('course-detail', course.slug)}
                       className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
-                      title="Batafsil ma'lumot"
+                      title={t('courses.details', "Batafsil ma'lumot")}
                     >
                       <ArrowUpRight className="w-4 h-4" />
                     </button>
@@ -183,7 +192,7 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
                       onClick={() => openLeadModal(course)}
                       className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all"
                     >
-                      Yozilish
+                      {t('courses.register', 'Yozilish')}
                     </button>
                   </div>
                 </div>

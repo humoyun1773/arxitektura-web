@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useData } from '../context/DataContext';
+import { useLanguage } from '../context/LanguageContext';
 import { 
   Search, 
   Filter, 
@@ -20,13 +21,22 @@ interface CoursesPageProps {
 
 export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
   const { courses, openLeadModal } = useData();
+  const { t } = useLanguage();
 
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Hammasi');
   const [selectedLevel, setSelectedLevel] = useState<string>('Hammasi');
   const [sortBy, setSortBy] = useState<'popular' | 'price-asc' | 'price-desc' | 'rating'>('popular');
 
-  const categories = ['Hammasi', "Ta'lim Kombinatsiyalari", 'Xorijiy Tillar', 'Arxitektura & 3D', 'IT & Dasturlash', 'Grafik Dizayn'];
+  const categories = [
+    { id: 'Hammasi', label: t('courses.all', 'Hammasi') },
+    { id: "Ta'lim Kombinatsiyalari", label: t('courses.combinations', "Ta'lim Kombinatsiyalari") },
+    { id: 'Xorijiy Tillar', label: t('courses.foreignLanguages', 'Xorijiy Tillar') },
+    { id: 'Arxitektura & 3D', label: 'Arxitektura & 3D' },
+    { id: 'IT & Dasturlash', label: 'IT & Dasturlash' },
+    { id: 'Grafik Dizayn', label: 'Grafik Dizayn' }
+  ];
+
   const levels = ['Hammasi', "Boshlang'ich", "O'rta", "Mukammal"];
 
   const filteredCourses = useMemo(() => {
@@ -82,7 +92,7 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
   };
 
   const formatPrice = (price: number) => {
-    return price.toLocaleString('uz-UZ') + " so'm/oy";
+    return `${price.toLocaleString('uz-UZ')} ${t('courses.perMonth', "so'm/oy")}`;
   };
 
   return (
@@ -92,13 +102,13 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            Kurslar Katalogi
+            {t('courses.badge', "Kurslar Katalogi")}
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white">
-            Kelajak Kasbini <span className="gradient-text">Bugun Tanlang</span>
+            {t('courses.title', "Eng Talabgir Kurslar va Kombinatsiyalar")}
           </h1>
           <p className="text-sm sm:text-base text-slate-400">
-            Arxitektura, 3D modellashtirish, IT dasturlash va boshqa talabgir sohalar bo'yicha amaliy kurslar ro'yxati.
+            {t('courses.subtitle', "O'zingizga mos ta'lim kombinatsiyasi yoki intensiv 7 oylik til kursini tanlang.")}
           </p>
         </div>
 
@@ -110,7 +120,7 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
               <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Kurs nomi, texnologiya yoki yo'nalish bo'yicha qidiring..."
+                placeholder={t('courses.searchPlaceholder', "Kurs nomi, texnologiya yoki yo'nalish bo'yicha qidiring...")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full bg-slate-950/80 border border-slate-700/80 focus:border-indigo-500 rounded-2xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all"
@@ -132,10 +142,10 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
                 onChange={(e) => setSelectedLevel(e.target.value)}
                 className="w-full bg-slate-950/80 border border-slate-700/80 focus:border-indigo-500 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none transition-all"
               >
-                <option value="Hammasi">Barcha Darajalar</option>
+                <option value="Hammasi">{t('courses.all', 'Barcha Darajalar')}</option>
                 {levels.filter((l) => l !== 'Hammasi').map((lvl) => (
                   <option key={lvl} value={lvl}>
-                    {lvl} daraja
+                    {lvl}
                   </option>
                 ))}
               </select>
@@ -148,8 +158,8 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
                 onChange={(e) => setSortBy(e.target.value as any)}
                 className="w-full bg-slate-950/80 border border-slate-700/80 focus:border-indigo-500 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none transition-all"
               >
-                <option value="popular">Ommabopligi bo'yicha</option>
-                <option value="rating">Reytingi bo'yicha</option>
+                <option value="popular">{t('courses.popular', 'Ommabop')}</option>
+                <option value="rating">Reyting bo'yicha</option>
                 <option value="price-asc">Narxi: Arzondan qimmatga</option>
                 <option value="price-desc">Narxi: Qimmatdan arzonga</option>
               </select>
@@ -161,15 +171,15 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
             <div className="flex flex-wrap items-center gap-2">
               {categories.map((cat) => (
                 <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
                   className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                    selectedCategory === cat
+                    selectedCategory === cat.id
                       ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
                       : 'bg-slate-950/60 text-slate-400 hover:text-white border border-slate-800'
                   }`}
                 >
-                  {cat}
+                  {cat.label}
                 </button>
               ))}
             </div>

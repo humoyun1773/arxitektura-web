@@ -1,9 +1,11 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { X, Sparkles, Phone, User, CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export const LeadModal: React.FC = () => {
   const { isLeadModalOpen, closeLeadModal, selectedCourseForModal, courses, submitLead } = useData();
+  const { t } = useLanguage();
   
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('+998 ');
@@ -81,43 +83,40 @@ export const LeadModal: React.FC = () => {
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="text-2xl font-bold font-heading text-white">
-              Arizangiz Muvaffaqiyatli Qabul Qilindi!
+              {t('modal.success', 'Arizangiz Muvaffaqiyatli Qabul Qilindi!')}
             </h3>
             <p className="text-sm text-slate-300">
-              Menejerimiz 15 daqiqa ichida siz bilan bog'lanib, bepul dars jadvali va chegirmalar haqida ma'lumot beradi.
+              {t('modal.subtitle', "Ma'lumotlaringizni qoldiring, mutaxassisimiz tez orada siz bilan bog'lanadi.")}
             </p>
-            <div className="p-3 bg-slate-800/60 rounded-xl text-xs text-slate-400 border border-slate-700/60">
-              Rahmat, siz bilan ko'rishishdan mamnunmiz!
-            </div>
           </div>
         ) : (
           <div className="p-6 sm:p-8">
             <div className="flex items-center gap-2 mb-2">
               <span className="px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-bold border border-indigo-500/20 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
-                Bepul Sinov Darsi
+                {t('brand.slogan', 'Intizomni Sevuvchilar Uchun')}
               </span>
             </div>
 
             <h3 className="text-xl sm:text-2xl font-bold font-heading text-white mb-2">
-              Kursga Ro'yxatdan O'tish
+              {t('modal.title', "Kursga Ro'yxatdan O'tish")}
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mb-6">
-              Ma'lumotlaringizni qoldiring va bepul master-klassga qatnashib, individual chegirmaga ega bo'ling.
+              {t('modal.subtitle', "Ma'lumotlaringizni qoldiring, mutaxassisimiz tez orada siz bilan bog'lanadi.")}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Ism va Familiyangiz *
+                  {t('modal.fullName', 'Ism va Familiyangiz *')}
                 </label>
                 <div className="relative">
                   <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     required
-                    placeholder="Masalan: Sardor Komilov"
+                    placeholder={t('modal.fullNamePlaceholder', 'Masalan: Sardor Komilov')}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     className="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all"
@@ -128,14 +127,14 @@ export const LeadModal: React.FC = () => {
               {/* Phone */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Telefon Raqamingiz *
+                  {t('modal.phone', 'Telefon Raqamingiz *')}
                 </label>
                 <div className="relative">
                   <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="tel"
                     required
-                    placeholder="+998 90 123 45 67"
+                    placeholder={t('modal.phonePlaceholder', '+998 90 123 45 67')}
                     value={phone}
                     onChange={handlePhoneChange}
                     className="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all font-mono"
@@ -146,17 +145,17 @@ export const LeadModal: React.FC = () => {
               {/* Course select */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                  Qiziqtirgan Kursingiz
+                  {t('modal.course', 'Qiziqtirgan Kursingiz')}
                 </label>
                 <select
                   value={courseId}
                   onChange={(e) => setCourseId(e.target.value)}
                   className="w-full bg-slate-950/80 border border-slate-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none transition-all"
                 >
-                  <option value="">Umumiy konsultatsiya (Aniq emas)</option>
+                  <option value="">{t('courses.all', 'Barcha kurslar')} (Tanlang)</option>
                   {courses.map((c) => (
                     <option key={c.id} value={c.id}>
-                      {c.title} ({c.durationMonths} oy)
+                      {c.title} ({c.durationMonths} {t('courses.months', 'oy')})
                     </option>
                   ))}
                 </select>
@@ -165,7 +164,7 @@ export const LeadModal: React.FC = () => {
               {/* Security info */}
               <div className="flex items-center gap-2 text-[11px] text-slate-500 pt-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-                <span>Ma'lumotlaringiz xavfsizligi 100% kafolatlanadi.</span>
+                <span>{t('modal.privacy', "Ma'lumotlaringiz xavfsizligi 100% kafolatlanadi.")}</span>
               </div>
 
               {/* Submit button */}
@@ -178,7 +177,7 @@ export const LeadModal: React.FC = () => {
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                 ) : (
                   <>
-                    <span>Ro'yxatdan O'tish</span>
+                    <span>{t('modal.submit', 'Arizani Yuborish')}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </>
                 )}

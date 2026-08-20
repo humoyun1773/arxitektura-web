@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { LeadModal } from './components/common/LeadModal';
@@ -117,7 +118,9 @@ export default function App() {
   return (
     <AuthProvider>
       <DataProvider>
-        <MainApp />
+        <LanguageProvider>
+          <MainApp />
+        </LanguageProvider>
       </DataProvider>
     </AuthProvider>
   );

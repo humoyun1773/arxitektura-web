@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { Sparkles, ArrowRight, ChevronLeft, ChevronRight, CheckCircle2, Award, Users, BookOpen } from 'lucide-react';
 
 interface HeroSliderProps {
@@ -8,6 +9,7 @@ interface HeroSliderProps {
 
 export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
   const { banners, openLeadModal } = useData();
+  const { t } = useLanguage();
   const activeBanners = banners.filter((b) => b.isActive);
   const [currentIdx, setCurrentIdx] = useState(0);
 
@@ -70,7 +72,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
                 onClick={() => openLeadModal()}
                 className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold text-base shadow-2xl shadow-indigo-600/40 hover:shadow-indigo-600/60 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
               >
-                <span>{current.ctaText}</span>
+                <span>{t('hero.cta1', current.ctaText)}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -79,7 +81,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
                 className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-slate-200 font-semibold text-base backdrop-blur-md transition-all flex items-center justify-center gap-2"
               >
                 <BookOpen className="w-5 h-5 text-indigo-400" />
-                <span>Barcha Kurslar</span>
+                <span>{t('hero.allCoursesBtn', 'Barcha Kurslar')}</span>
               </button>
             </div>
 
@@ -87,15 +89,15 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
             <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-400 font-medium">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>100% Amaliy loyihalar</span>
+                <span>{t('hero.feature1', '100% Amaliy loyihalar')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>Rasmiy diplom & sertifikat</span>
+                <span>{t('hero.feature2', 'Rasmiy diplom & sertifikat')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Users className="w-4 h-4 text-indigo-400 shrink-0" />
-                <span>Karyera markazi ko'magi</span>
+                <span>{t('hero.feature3', "Ish bilan ta'minlash kafolati")}</span>
               </div>
             </div>
           </div>
@@ -118,14 +120,14 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
                 {/* Floating Bottom Badge */}
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/85 backdrop-blur-xl border border-slate-800 flex items-center justify-between gap-3">
                   <div>
-                    <div className="text-xs font-semibold text-indigo-400">Natija Kafolati</div>
+                    <div className="text-xs font-semibold text-indigo-400">{t('hero.resultGuarantee', 'Natija Kafolati')}</div>
                     <div className="text-xs font-bold text-white line-clamp-1">{current.statsText}</div>
                   </div>
                   <button
                     onClick={() => openLeadModal()}
                     className="shrink-0 px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500"
                   >
-                    Yozilish
+                    {t('hero.enroll', 'Yozilish')}
                   </button>
                 </div>
               </div>

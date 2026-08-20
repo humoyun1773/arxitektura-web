@@ -1,5 +1,6 @@
 import React from 'react';
 import { useData } from '../../context/DataContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { 
   Phone, 
   Mail, 
@@ -11,13 +12,13 @@ import {
 } from 'lucide-react';
 import { TelegramIcon, InstagramIcon, YoutubeIcon } from './SocialIcons';
 
-
 interface FooterProps {
   onNavigate: (page: string, param?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const { settings, courses } = useData();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 relative overflow-hidden">
@@ -37,13 +38,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <span className="font-heading font-extrabold text-white text-lg">A</span>
               </div>
               <div>
-                <div className="font-heading font-bold text-lg text-white">AL-HAKIM AT-TERMEZIY</div>
-                <p className="text-xs text-indigo-400 font-medium">Intizomni Sevuvchilar Uchun • Qarshi</p>
+                <div className="font-heading font-bold text-lg text-white">{t('brand.title', 'AL-HAKIM AT-TERMEZIY')}</div>
+                <p className="text-xs text-indigo-400 font-medium">{t('brand.slogan', 'Intizomni Sevuvchilar Uchun • Qarshi')}</p>
               </div>
             </button>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkur. Kursni muvaffaqiyatli tugatgan talabalar to'liq ish bilan ta'minlanadi.
+              {t('footer.desc', "28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkur. Kursni muvaffaqiyatli tugatgan talabalar to'liq ish bilan ta'minlanadi.")}
             </p>
 
             {/* Socials */}
@@ -88,37 +89,37 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Quick Links */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider font-heading">
-              Asosiy Sahifalar
+              {t('footer.quickLinks', 'Tezkor Havolalar')}
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <button onClick={() => onNavigate('home')} className="hover:text-indigo-400 transition-colors">
-                  Bosh sahifa
+                  {t('nav.home', 'Bosh sahifa')}
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('courses')} className="hover:text-indigo-400 transition-colors">
-                  Barcha kurslar
+                  {t('nav.courses', 'Kurslar')}
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('teachers')} className="hover:text-indigo-400 transition-colors">
-                  O'qituvchilar tarkibi
+                  {t('nav.teachers', "O'qituvchilar")}
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('about')} className="hover:text-indigo-400 transition-colors">
-                  Markaz haqida & Filiallar
+                  {t('nav.about', 'Biz haqimizda')}
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('blog')} className="hover:text-indigo-400 transition-colors">
-                  Foydali blog & yangiliklar
+                  {t('nav.blog', 'Blog & Yangiliklar')}
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('contact')} className="hover:text-indigo-400 transition-colors">
-                  Bog'lanish & Xarita
+                  {t('nav.contact', 'Bog\'lanish')}
                 </button>
               </li>
             </ul>
@@ -127,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Popular Courses */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider font-heading">
-              Ommabop Kurslar
+              {t('footer.programs', 'Dasturlar')}
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               {courses.slice(0, 5).map((c) => (
@@ -147,7 +148,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Contact Details */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider font-heading">
-              Aloqa Ma'lumotlari
+              {t('footer.contact', "Bog'lanish")}
             </h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-start gap-2.5">
@@ -176,17 +177,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} ARXITEKTURA ACADEMY. Barcha huquqlar himoyalangan.</p>
+          <p>© {new Date().getFullYear()} {t('brand.title', 'AL-HAKIM AT-TERMEZIY')}. {t('footer.rights', 'Barcha huquqlar himoyalangan.')}</p>
           <div className="flex items-center gap-6">
             <button 
               onClick={() => onNavigate('admin')}
               className="text-slate-400 hover:text-indigo-400 flex items-center gap-1.5 transition-colors"
             >
               <ShieldCheck className="w-4 h-4 text-indigo-400" />
-              <span>Admin Panelga Kirish</span>
+              <span>Admin Panel</span>
             </button>
             <span className="flex items-center gap-1">
-              O'zbekistonda <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 mx-0.5" /> bilan yaratilgan
+              Qarshi, O'zbekiston <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 mx-0.5" />
             </span>
           </div>
         </div>
