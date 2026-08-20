@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useData } from '../../context/DataContext';
 import { 
   Phone, 
@@ -169,6 +169,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
               </div>
               <span className="hidden xl:inline">{settings.phoneMain}</span>
             </a>
+
+            {/* Language switch */}
+            <div className="flex items-center bg-slate-900/80 border border-slate-800 rounded-xl p-1 text-[11px] font-bold">
+              <span className="px-2 py-1 rounded-lg bg-indigo-600 text-white shadow">UZ</span>
+              <span className="px-2 py-1 rounded-lg text-slate-400 hover:text-white cursor-pointer transition-colors">RU</span>
+            </div>
 
             {/* Consultation button */}
             <button
