@@ -35,20 +35,20 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="pt-28 pb-20 min-h-screen">
+    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
       <div className="app-container">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white">
+          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-slate-900">
             Foydali Maqolalar va <span className="gradient-text">Texnologiya Yangiliklari</span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-600">
             Arxitektura, 3D modellashtirish, zamonaviy dasturlash va karyera bo'yicha ekspert maqolalari.
           </p>
         </div>
 
         {/* Filter / Search bar */}
-        <div className="p-6 rounded-3xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="relative w-full md:w-80">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
@@ -56,7 +56,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
               placeholder="Maqolalardan qidirish..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-indigo-500"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 outline-none focus:border-indigo-600 focus:bg-white"
             />
           </div>
 
@@ -67,8 +67,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
                 onClick={() => setSelectedTag(tag)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                   selectedTag === tag
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-slate-800 text-slate-400 hover:text-white'
+                    ? 'bg-indigo-600 text-white shadow-sm'
+                    : 'bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200'
                 }`}
               >
                 #{tag}
@@ -83,22 +83,22 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
             <article
               key={post.id}
               onClick={() => handlePostClick(post.slug, post.id)}
-              className="rounded-3xl bg-slate-900/60 border border-slate-800 hover:border-indigo-500/40 backdrop-blur-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-indigo-500/10 flex flex-col justify-between group"
+              className="rounded-3xl bg-white border border-slate-200/90 hover:border-indigo-300 shadow-sm overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-indigo-500/10 flex flex-col justify-between group"
             >
               <div>
-                <div className="relative aspect-[16/9] overflow-hidden bg-slate-800">
+                <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
                   <img
                     src={post.coverImage}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-[11px] font-bold text-indigo-300 border border-slate-700">
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[11px] font-bold text-indigo-700 border border-slate-200 shadow-sm">
                     {post.category}
                   </div>
                 </div>
 
                 <div className="p-6 space-y-3">
-                  <div className="flex items-center gap-3 text-xs text-slate-400">
+                  <div className="flex items-center gap-3 text-xs text-slate-500">
                     <span>{post.createdAt}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
@@ -112,11 +112,11 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
                     </span>
                   </div>
 
-                  <h2 className="font-heading font-bold text-lg text-white group-hover:text-indigo-300 transition-colors line-clamp-2">
+                  <h2 className="font-heading font-bold text-lg text-slate-900 group-hover:text-indigo-600 transition-colors line-clamp-2">
                     {post.title}
                   </h2>
 
-                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
                     {post.excerpt}
                   </p>
 
@@ -124,7 +124,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
                     {post.tags.map((t, idx) => (
                       <span
                         key={idx}
-                        className="text-[10px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded-md"
+                        className="text-[10px] text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md"
                       >
                         #{t}
                       </span>
@@ -134,16 +134,16 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
               </div>
 
               {/* Author Footer */}
-              <div className="p-6 pt-0 border-t border-slate-800/80 mt-4 flex items-center justify-between">
+              <div className="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <img
                     src={post.authorAvatar}
                     alt={post.author}
                     className="w-7 h-7 rounded-full object-cover"
                   />
-                  <span className="text-xs font-semibold text-slate-300">{post.author}</span>
+                  <span className="text-xs font-semibold text-slate-700">{post.author}</span>
                 </div>
-                <div className="text-indigo-400 group-hover:translate-x-1 transition-transform">
+                <div className="text-indigo-600 group-hover:translate-x-1 transition-transform">
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </div>

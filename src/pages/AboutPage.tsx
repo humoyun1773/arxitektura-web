@@ -46,36 +46,36 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="pt-28 pb-20 min-h-screen">
+    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
       <div className="app-container space-y-20">
         {/* Hero Banner */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white">
+          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-slate-900">
             Kelajak Me'morlari va <span className="gradient-text">Dasturchilar Akademiyasi</span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             "ARXITEKTURA ACADEMY" — 2016-yildan buyon zamonaviy arxitektura, 3D vizualizatsiya, IT dasturlash va dizayn sohasida xalqaro standartlarga mos kadrlar tayyorlab kelmoqda.
           </p>
         </div>
 
         {/* Mission & Vision */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
               <Target className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold font-heading text-white">Bizning Missiyamiz</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <h2 className="text-2xl font-bold font-heading text-slate-900">Bizning Missiyamiz</h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
               O'zbekiston yoshlariga jahon standartlariga mos zamonaviy kasblarni sifatli va qulay o'rgatish orqali ularni xalqaro darajadagi yuqori daromadli mutaxassisga aylantirish.
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 backdrop-blur-xl space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-pink-600/20 border border-pink-500/30 flex items-center justify-center text-pink-400">
+          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-pink-50 border border-pink-100 flex items-center justify-center text-pink-600">
               <Award className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold font-heading text-white">Bizning Maqsadimiz</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <h2 className="text-2xl font-bold font-heading text-slate-900">Bizning Maqsadimiz</h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
               2030-yilgacha 50,000 dan ortiq yoshlarni raqamli kasblar bilan ta'minlash hamda mamlakatimizni mintaqaviy IT va Arxitektura xabiga aylantirishga hissa qo'shish.
             </p>
           </div>
@@ -84,18 +84,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         {/* Values */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-3xl font-extrabold font-heading text-white">Bizning Asosiy Qadriyatlarimiz</h2>
-            <p className="text-sm text-slate-400">Biz nima uchun sifat va halollikni birinchi o'ringa qo'yamiz?</p>
+            <h2 className="text-3xl font-extrabold font-heading text-slate-900">Bizning Asosiy Qadriyatlarimiz</h2>
+            <p className="text-sm text-slate-600">Biz nima uchun sifat va halollikni birinchi o'ringa qo'yamiz?</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
-              <div key={i} className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800/80 space-y-3">
-                <div className="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-400 font-bold flex items-center justify-center text-sm">
+              <div key={i} className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-3">
+                <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center text-sm border border-indigo-100">
                   0{i + 1}
                 </div>
-                <h3 className="font-heading font-bold text-base text-white">{v.title}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">{v.desc}</p>
+                <h3 className="font-heading font-bold text-base text-slate-900">{v.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -104,35 +104,35 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         {/* Branches */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-3xl font-extrabold font-heading text-white">Bizning Filiallarimiz</h2>
-            <p className="text-sm text-slate-400">Shaharning qulay nuqtalarida joylashgan zamonaviy o'quv markazlarimiz</p>
+            <h2 className="text-3xl font-extrabold font-heading text-slate-900">Bizning Filiallarimiz</h2>
+            <p className="text-sm text-slate-600">Shaharning qulay nuqtalarida joylashgan zamonaviy o'quv markazlarimiz</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {branches.map((b, i) => (
-              <div key={i} className="rounded-3xl bg-slate-900/60 border border-slate-800 overflow-hidden flex flex-col justify-between">
+              <div key={i} className="rounded-3xl bg-white border border-slate-200/90 shadow-sm overflow-hidden flex flex-col justify-between">
                 <img src={b.img} alt={b.name} className="w-full aspect-video object-cover" />
                 <div className="p-6 space-y-4">
-                  <h3 className="font-heading font-bold text-lg text-white">{b.name}</h3>
-                  <div className="space-y-2 text-xs text-slate-300">
+                  <h3 className="font-heading font-bold text-lg text-slate-900">{b.name}</h3>
+                  <div className="space-y-2 text-xs text-slate-600">
                     <div className="flex items-start gap-2">
-                      <MapPin className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                      <MapPin className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
                       <span>{b.address}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <a href={`tel:${b.phone.replace(/\s+/g, '')}`} className="hover:text-white font-mono">
+                      <Phone className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <a href={`tel:${b.phone.replace(/\s+/g, '')}`} className="hover:text-indigo-600 font-mono font-bold text-slate-800">
                         {b.phone}
                       </a>
                     </div>
-                    <div className="flex items-center gap-2 text-slate-400">
-                      <ShieldCheck className="w-4 h-4 text-indigo-400 shrink-0" />
+                    <div className="flex items-center gap-2 text-slate-500">
+                      <ShieldCheck className="w-4 h-4 text-indigo-600 shrink-0" />
                       <span>{b.rooms}</span>
                     </div>
                   </div>
                   <button
                     onClick={() => openLeadModal()}
-                    className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition-colors"
+                    className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition-colors shadow-sm"
                   >
                     Ushbu Filialda O'qishga Yozilish
                   </button>

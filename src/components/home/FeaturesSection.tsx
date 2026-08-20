@@ -47,14 +47,14 @@ export const FeaturesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative bg-slate-50/70 border-y border-slate-200/70">
       <div className="app-container">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
             {t('features.title', "Noyob Metodika va Qat'iy Intizom")}
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-600">
             {t('features.subtitle', "Har bir talabaning individual salohiyatini ochish va xalqaro miqyosda raqobatbardosh kadr qilib yetishtirish bizning asosiy maqsadimizdir.")}
           </p>
         </div>
@@ -64,15 +64,15 @@ export const FeaturesSection: React.FC = () => {
           {features.map((feat, idx) => (
             <div
               key={idx}
-              className="p-8 rounded-3xl bg-slate-900/50 border border-slate-800/80 hover:border-indigo-500/30 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-indigo-500/5 group"
+              className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-indigo-300 transition-all duration-300 hover:-translate-y-1.5 group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700/80 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-indigo-500/40 transition-all">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-50/90 border border-indigo-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-all">
                 {feat.icon}
               </div>
-              <h3 className="font-heading font-bold text-lg text-white mb-2.5 group-hover:text-indigo-300 transition-colors">
+              <h3 className="font-heading font-bold text-lg text-slate-900 mb-2.5 group-hover:text-indigo-600 transition-colors">
                 {feat.title}
               </h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 {feat.desc}
               </p>
             </div>

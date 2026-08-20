@@ -87,7 +87,7 @@ const MainApp: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col justify-between selection:bg-indigo-600 selection:text-white">
       <Header currentPage={currentPage} onNavigate={navigate} />
 
       <main className="flex-1">

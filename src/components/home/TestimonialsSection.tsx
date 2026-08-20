@@ -39,24 +39,24 @@ export const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 relative bg-slate-950/80">
+    <section className="py-20 relative bg-white">
       <div className="app-container">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="space-y-3">
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
               {t('reviews.title', "Bitiruvchilar Natijalari va Sharhlari")}
             </h2>
-            <p className="text-sm sm:text-base text-slate-400 max-w-xl">
+            <p className="text-sm sm:text-base text-slate-600 max-w-xl">
               {t('reviews.subtitle', "Bizning o'quv markazimizda tahsil olgan talabalarning samimiy fikrlari.")}
             </p>
           </div>
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="px-5 py-3 rounded-2xl bg-slate-900 border border-slate-700/80 hover:border-indigo-500 text-slate-200 text-xs sm:text-sm font-bold flex items-center gap-2 transition-all"
+            className="px-5 py-3 rounded-2xl bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-700 hover:text-slate-900 text-xs sm:text-sm font-bold flex items-center gap-2 transition-all shadow-sm"
           >
-            <PlusCircle className="w-4 h-4 text-indigo-400" />
+            <PlusCircle className="w-4 h-4 text-indigo-600" />
             <span>Fikr Qoldirish</span>
           </button>
         </div>
@@ -66,7 +66,7 @@ export const TestimonialsSection: React.FC = () => {
           {approvedReviews.map((rev) => (
             <div
               key={rev.id}
-              className="rounded-3xl p-6 bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-5 group"
+              className="rounded-3xl p-6 bg-white border border-slate-200/90 hover:border-indigo-300 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col justify-between space-y-5 group"
             >
               <div className="space-y-3">
                 {/* Rating & Quote */}
@@ -76,31 +76,31 @@ export const TestimonialsSection: React.FC = () => {
                       <Star
                         key={i}
                         className={`w-4 h-4 ${
-                          i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-700'
+                          i < rev.rating ? 'fill-amber-400 text-amber-400' : 'text-slate-200'
                         }`}
                       />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-indigo-500/30 group-hover:text-indigo-400/60 transition-colors" />
+                  <Quote className="w-6 h-6 text-indigo-200 group-hover:text-indigo-400 transition-colors" />
                 </div>
 
-                <p className="text-sm text-slate-300 leading-relaxed italic">
+                <p className="text-sm text-slate-600 leading-relaxed italic">
                   "{rev.comment}"
                 </p>
               </div>
 
               {/* Author */}
-              <div className="pt-4 border-t border-slate-800/80 flex items-center gap-3">
+              <div className="pt-4 border-t border-slate-100 flex items-center gap-3">
                 <img
                   src={rev.avatar}
                   alt={rev.name}
-                  className="w-11 h-11 rounded-full object-cover border border-slate-700"
+                  className="w-11 h-11 rounded-full object-cover border border-slate-200"
                 />
                 <div>
-                  <div className="font-heading font-bold text-sm text-white">
+                  <div className="font-heading font-bold text-sm text-slate-900">
                     {rev.name}
                   </div>
-                  <div className="text-xs text-indigo-400">
+                  <div className="text-xs text-indigo-600 font-semibold">
                     {rev.courseTitle}
                   </div>
                   {rev.company && (
@@ -118,9 +118,9 @@ export const TestimonialsSection: React.FC = () => {
 
       {/* Review Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
-          <div className="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-800 p-6 shadow-2xl space-y-4">
-            <h3 className="text-lg font-bold font-heading text-white">Fikr qoldirish</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in">
+          <div className="w-full max-w-md rounded-3xl bg-white border border-slate-200 p-6 shadow-2xl space-y-4">
+            <h3 className="text-lg font-bold font-heading text-slate-900">Fikr qoldirish</h3>
             <form onSubmit={handleAddReview} className="space-y-3">
               <input
                 type="text"
@@ -128,14 +128,14 @@ export const TestimonialsSection: React.FC = () => {
                 placeholder="Ismingiz *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-900 outline-none focus:border-indigo-600 focus:bg-white"
               />
               <input
                 type="text"
                 placeholder="Qaysi kursni bitirgansiz?"
                 value={courseTitle}
                 onChange={(e) => setCourseTitle(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-900 outline-none focus:border-indigo-600 focus:bg-white"
               />
               <div className="grid grid-cols-2 gap-2">
                 <input
@@ -143,18 +143,18 @@ export const TestimonialsSection: React.FC = () => {
                   placeholder="Ish joyingiz (kompaniya)"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-900 outline-none focus:border-indigo-600 focus:bg-white"
                 />
                 <input
                   type="text"
                   placeholder="Lavozimingiz"
                   value={workPosition}
                   onChange={(e) => setWorkPosition(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-900 outline-none focus:border-indigo-600 focus:bg-white"
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Baho:</label>
+                <label className="text-xs text-slate-600 block mb-1">Baho:</label>
                 <div className="flex gap-2">
                   {[1, 2, 3, 4, 5].map((num) => (
                     <button
@@ -162,7 +162,7 @@ export const TestimonialsSection: React.FC = () => {
                       type="button"
                       onClick={() => setRating(num)}
                       className={`p-2 rounded-lg border text-xs font-bold ${
-                        rating === num ? 'bg-amber-500/20 border-amber-500 text-amber-300' : 'bg-slate-800 border-slate-700 text-slate-400'
+                        rating === num ? 'bg-amber-50 border-amber-400 text-amber-600' : 'bg-slate-50 border-slate-200 text-slate-600'
                       }`}
                     >
                       ★ {num}
@@ -176,19 +176,19 @@ export const TestimonialsSection: React.FC = () => {
                 placeholder="Fikringiz, natijalaringiz va taassurotlaringiz..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none focus:border-indigo-500 resize-none"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-900 outline-none focus:border-indigo-600 focus:bg-white resize-none"
               />
               <div className="flex gap-2 pt-2">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-slate-800 text-slate-400 text-xs font-semibold"
+                  className="flex-1 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200"
                 >
                   Bekor qilish
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500"
+                  className="flex-1 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 shadow-sm"
                 >
                   Yuborish
                 </button>

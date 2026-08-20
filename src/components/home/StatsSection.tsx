@@ -41,27 +41,27 @@ export const StatsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 relative">
+    <section className="py-12 relative bg-white">
       <div className="app-container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((item) => (
             <div
               key={item.id}
-              className="relative rounded-3xl p-6 bg-slate-900/60 border border-slate-800 backdrop-blur-xl hover:border-slate-700 transition-all group overflow-hidden"
+              className="relative rounded-3xl p-6 bg-white border border-slate-200/90 shadow-sm hover:shadow-lg hover:border-indigo-300 transition-all group overflow-hidden"
             >
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${item.gradient} rounded-full blur-2xl -z-10 group-hover:scale-125 transition-transform`}></div>
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${item.gradient} rounded-full blur-2xl -z-10 group-hover:scale-125 transition-transform opacity-30`}></div>
               
-              <div className="w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-50/80 border border-indigo-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 {item.icon}
               </div>
 
-              <div className="font-heading font-extrabold text-3xl sm:text-4xl text-white tracking-tight mb-1">
+              <div className="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight mb-1">
                 {item.value}
               </div>
-              <div className="font-semibold text-sm text-slate-200 mb-1.5">
+              <div className="font-semibold text-sm text-slate-800 mb-1.5">
                 {item.label}
               </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-500 leading-relaxed">
                 {item.desc}
               </p>
             </div>

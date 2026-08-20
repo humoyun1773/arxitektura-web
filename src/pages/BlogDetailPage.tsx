@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useData } from '../context/DataContext';
 import { ArrowLeft, Clock, Eye, Share2, Tag, BookOpen, Send, Sparkles } from 'lucide-react';
 
@@ -41,12 +41,12 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({ slug, onNavigate
   };
 
   return (
-    <div className="pt-28 pb-20 min-h-screen">
+    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back */}
         <button
           onClick={() => onNavigate('blog')}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white mb-8 group transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-indigo-600 mb-8 group transition-colors"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           <span>Barcha maqolalarga qaytish</span>
@@ -55,43 +55,43 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({ slug, onNavigate
         {/* Article Header */}
         <div className="space-y-4 mb-8">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold">
+            <span className="px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold">
               {post.category}
             </span>
-            <span className="text-xs text-slate-400">{post.createdAt}</span>
-            <span className="text-slate-600">•</span>
-            <span className="text-xs text-slate-400 flex items-center gap-1">
+            <span className="text-xs text-slate-500">{post.createdAt}</span>
+            <span className="text-slate-300">•</span>
+            <span className="text-xs text-slate-500 flex items-center gap-1">
               <Clock className="w-3.5 h-3.5" />
               {post.readTime}
             </span>
-            <span className="text-slate-600">•</span>
-            <span className="text-xs text-slate-400 flex items-center gap-1">
+            <span className="text-slate-300">•</span>
+            <span className="text-xs text-slate-500 flex items-center gap-1">
               <Eye className="w-3.5 h-3.5" />
               {post.views} ko'rildi
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-extrabold font-heading text-white leading-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold font-heading text-slate-900 leading-tight">
             {post.title}
           </h1>
 
           {/* Author bar */}
-          <div className="flex items-center justify-between py-4 border-y border-slate-800">
+          <div className="flex items-center justify-between py-4 border-y border-slate-200">
             <div className="flex items-center gap-3">
               <img
                 src={post.authorAvatar}
                 alt={post.author}
-                className="w-10 h-10 rounded-full object-cover border border-slate-700"
+                className="w-10 h-10 rounded-full object-cover border border-slate-200"
               />
               <div>
-                <div className="text-sm font-bold text-white">{post.author}</div>
-                <div className="text-xs text-indigo-400">Muallif & Mutaxassis</div>
+                <div className="text-sm font-bold text-slate-900">{post.author}</div>
+                <div className="text-xs text-indigo-600 font-semibold">Muallif & Mutaxassis</div>
               </div>
             </div>
 
             <button
               onClick={handleShare}
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white flex items-center gap-2 text-xs font-semibold"
+              className="p-2.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-200 flex items-center gap-2 text-xs font-semibold"
             >
               <Share2 className="w-4 h-4" />
               <span className="hidden sm:inline">Ulashish</span>
@@ -100,26 +100,26 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({ slug, onNavigate
         </div>
 
         {/* Cover image */}
-        <div className="relative aspect-video rounded-3xl overflow-hidden mb-10 bg-slate-800 border border-slate-700/80 shadow-2xl">
+        <div className="relative aspect-video rounded-3xl overflow-hidden mb-10 bg-slate-100 border border-slate-200 shadow-xl">
           <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover" />
         </div>
 
         {/* Content */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-6 text-slate-200 leading-relaxed text-sm sm:text-base">
-          <p className="text-base sm:text-lg font-medium text-slate-100 border-l-2 border-indigo-500 pl-4 italic">
+        <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-slate-800 leading-relaxed text-sm sm:text-base">
+          <p className="text-base sm:text-lg font-medium text-slate-800 border-l-2 border-indigo-600 pl-4 italic">
             {post.excerpt}
           </p>
 
-          <div className="space-y-4 whitespace-pre-line text-slate-300">
+          <div className="space-y-4 whitespace-pre-line text-slate-700 leading-relaxed">
             {post.content}
           </div>
 
           {/* Tags */}
-          <div className="pt-6 border-t border-slate-800 flex flex-wrap gap-2">
+          <div className="pt-6 border-t border-slate-100 flex flex-wrap gap-2">
             {post.tags.map((t, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 rounded-xl bg-slate-800 text-xs text-slate-300 font-medium"
+                className="px-3 py-1 rounded-xl bg-slate-100 text-xs text-slate-700 font-medium"
               >
                 #{t}
               </span>
@@ -128,18 +128,18 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({ slug, onNavigate
         </div>
 
         {/* Banner CTA inside article */}
-        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-indigo-900/80 to-purple-900/80 border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl text-white">
           <div>
             <h3 className="text-xl font-bold font-heading text-white mb-1">
               Ushbu sohani chuqur o'rganmoqchimisiz?
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300">
+            <p className="text-xs sm:text-sm text-slate-200">
               Bepul sinov darsiga yoziling va amaliy tajriba orttiring!
             </p>
           </div>
           <button
             onClick={() => openLeadModal()}
-            className="shrink-0 px-6 py-3 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-slate-100 shadow-lg"
+            className="shrink-0 px-6 py-3 rounded-xl bg-white text-indigo-700 font-bold text-xs hover:bg-slate-50 shadow-lg"
           >
             Kursga Yozilish
           </button>
