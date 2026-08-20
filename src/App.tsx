@@ -1,10 +1,9 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { LeadModal } from './components/common/LeadModal';
-import { ChatWidget } from './components/common/ChatWidget';
 import { Toast } from './components/common/Toast';
 
 // Public Pages
@@ -109,7 +108,6 @@ const MainApp: React.FC = () => {
 
       {/* Global Modals & Utilities */}
       <LeadModal />
-      <ChatWidget />
       <Toast />
     </div>
   );
