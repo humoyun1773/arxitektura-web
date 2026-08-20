@@ -44,10 +44,6 @@ export const TestimonialsSection: React.FC = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              {t('reviews.badge', "O'quvchilarimiz Fikrlari")}
-            </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
               {t('reviews.title', "Bitiruvchilar Natijalari va Sharhlari")}
             </h2>

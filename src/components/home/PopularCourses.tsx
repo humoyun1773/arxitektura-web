@@ -47,10 +47,6 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-              {t('courses.badge', "Ta'lim Yo'nalishlari")}
-            </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
               {t('courses.title', "Eng Talabgir Kurslar va Kombinatsiyalar")}
             </h2>

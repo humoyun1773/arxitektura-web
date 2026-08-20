@@ -51,10 +51,6 @@ export const FeaturesSection: React.FC = () => {
       <div className="app-container">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            {t('features.badge', 'Nega Aynan Biz?')}
-          </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-white">
             {t('features.title', "Noyob Metodika va Qat'iy Intizom")}
           </h2>

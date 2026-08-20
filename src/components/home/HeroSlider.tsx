@@ -37,12 +37,6 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs sm:text-sm font-semibold backdrop-blur-md shadow-lg shadow-indigo-500/5 animate-float">
-              <Sparkles className="w-4 h-4 text-amber-300 animate-spin" style={{ animationDuration: '8s' }} />
-              <span>{t('hero.badge1', current.badge)}</span>
-            </div>
-
             {/* Title */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
               {t('hero.title1', current.title)}{' '}

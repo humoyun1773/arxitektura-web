@@ -100,10 +100,6 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
       <div className="app-container">
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            {t('courses.badge', "Kurslar Katalogi")}
-          </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white">
             {t('courses.title', "Eng Talabgir Kurslar va Kombinatsiyalar")}
           </h1>

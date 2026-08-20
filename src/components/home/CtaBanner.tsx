@@ -16,11 +16,6 @@ export const CtaBanner: React.FC = () => {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="relative z-10 max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-              <span>{t('cta.badge', 'Qabul Ochiq')}</span>
-            </div>
-
             <h2 className="text-3xl sm:text-5xl font-extrabold font-heading text-white leading-tight">
               {t('cta.title', 'Kelajagingizni Biz Bilan Birga Quring!')}
             </h2>

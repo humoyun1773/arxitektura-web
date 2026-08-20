@@ -54,10 +54,6 @@ export const ContactPage: React.FC = () => {
       <div className="app-container space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            Biz Bilan Bog'laning
-          </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-white">
             Savollaringiz Bormi? <span className="gradient-text">Yordam Beramiz</span>
           </h1>
