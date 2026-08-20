@@ -12,12 +12,11 @@ export const PartnersSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 relative border-y border-slate-800/60 bg-slate-950/40">
+    <section className="py-12 relative bg-white border-y border-slate-100">
       <div className="app-container">
         <div className="text-center mb-8">
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest flex items-center justify-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Bitiruvchilarimiz Quyidagi Yirik Kompaniyalarda Ishlamoqda</span>
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+            Bitiruvchilarimiz Ishlayotgan Kompaniyalar
           </p>
         </div>
 
@@ -25,13 +24,13 @@ export const PartnersSection: React.FC = () => {
           {partners.map((p, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-slate-900/40 border border-slate-800/80 hover:border-indigo-500/40 flex flex-col items-center justify-center text-center transition-all duration-300 group hover:-translate-y-1 hover:bg-slate-900/80"
+              className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:border-indigo-300 flex flex-col items-center justify-center text-center transition-all duration-300 group hover:-translate-y-1 hover:shadow-md"
             >
-              <Building className="w-6 h-6 text-slate-600 group-hover:text-indigo-400 transition-colors mb-2" />
-              <div className="font-heading font-extrabold text-xs sm:text-sm text-slate-300 group-hover:text-white tracking-wider">
+              <Building className="w-6 h-6 text-slate-400 group-hover:text-indigo-600 transition-colors mb-2" />
+              <div className="font-heading font-extrabold text-xs sm:text-sm text-slate-800 group-hover:text-indigo-600 tracking-wider">
                 {p.name}
               </div>
-              <div className="text-[10px] text-slate-400 mt-1">
+              <div className="text-[10px] text-slate-500 mt-1">
                 {p.sub}
               </div>
             </div>
