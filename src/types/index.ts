@@ -1,43 +1,44 @@
-export type CourseLevel = "Boshlang'ich" | "O'rta" | "Mukammal" | "Barcha darajalar";
+export type ProjectCategory = 
+  | 'Kottejlar & Villalar' 
+  | 'Ko\'p Qavatli Binolar' 
+  | 'Interyer Dizayn' 
+  | 'Tijoriy Obyektlar' 
+  | 'Landshaft & Fasad';
 
-export interface SyllabusItem {
-  id: string;
-  module: number;
+export type ProjectStyle = 'Modern / Zamonaviy' | 'Neoklassika' | 'Minimalizm' | 'Hi-Tech' | 'Klassik';
+
+export interface FloorPlan {
+  floorNumber: number;
   title: string;
-  duration: string;
-  topics: string[];
+  area: number;
+  image: string;
+  rooms: string[];
 }
 
-export type CourseCategory = "Ta'lim Kombinatsiyalari" | 'Xorijiy Tillar' | 'Arxitektura & 3D' | 'IT & Dasturlash' | 'Grafik Dizayn' | 'Raqamli Marketing';
-
-export interface Course {
+export interface Project {
   id: string;
   title: string;
   slug: string;
-  category: CourseCategory;
-  level: CourseLevel;
-  durationMonths: number;
-  lessonsPerWeek: number;
-  hoursPerLesson: number;
-  price: number;
-  discountPrice?: number;
-  rating: number;
-  reviewsCount: number;
-  studentsCount: number;
-  image: string;
-  videoUrl?: string;
-  isPopular: boolean;
+  category: ProjectCategory;
+  style: ProjectStyle;
+  areaM2: number;
+  floorsCount: number;
+  location: string;
+  year: number;
+  coverImage: string;
+  gallery: string[];
+  floorPlans?: FloorPlan[];
+  isFeatured: boolean;
   isActive: boolean;
   shortDescription: string;
   fullDescription: string;
-  syllabus: SyllabusItem[];
-  schedule: string;
-  requirements: string[];
   features: string[];
-  instructorId: string;
+  clientName?: string;
+  leadArchitectId: string;
+  durationMonths: number;
 }
 
-export interface Teacher {
+export interface Architect {
   id: string;
   name: string;
   role: string;
@@ -45,23 +46,49 @@ export interface Teacher {
   experienceYears: number;
   avatar: string;
   specializations: string[];
-  courseIds: string[];
+  projectIds: string[];
   telegram?: string;
   instagram?: string;
   linkedin?: string;
   rating: number;
-  studentsTaught: number;
-  certificates: string[];
+  projectsCompleted: number;
+  awards: string[];
 }
 
-export type LeadStatus = 'new' | 'contacted' | 'registered' | 'cancelled';
+export interface ServicePackage {
+  id: string;
+  name: string;
+  pricePerM2: number;
+  description: string;
+  deliverables: string[];
+  isPopular?: boolean;
+}
+
+export interface Service {
+  id: string;
+  title: string;
+  slug: string;
+  category: ProjectCategory;
+  icon: string;
+  shortDesc: string;
+  fullDesc: string;
+  startingPricePerM2: number;
+  estimatedDuration: string;
+  packages: ServicePackage[];
+  deliverables: string[];
+  image: string;
+}
+
+export type LeadStatus = 'new' | 'contacted' | 'contract_signed' | 'cancelled';
 
 export interface Lead {
   id: string;
   fullName: string;
   phone: string;
-  courseId?: string;
-  courseTitle?: string;
+  projectId?: string;
+  projectTitle?: string;
+  serviceType?: string;
+  estimatedAreaM2?: number;
   source: string;
   status: LeadStatus;
   notes?: string;
@@ -71,15 +98,13 @@ export interface Lead {
 export interface Review {
   id: string;
   name?: string;
-  studentName?: string;
-  studentRole?: string;
+  clientRole?: string;
   avatar: string;
-  courseTitle: string;
+  projectTitle: string;
   rating: number;
   comment: string;
   date: string;
-  company?: string;
-  workPosition?: string;
+  location?: string;
   isApproved: boolean;
 }
 
@@ -89,11 +114,10 @@ export interface BlogPost {
   slug: string;
   excerpt: string;
   content: string;
-  coverImage?: string;
-  image?: string;
+  coverImage: string;
   author: string;
-  authorAvatar?: string;
-  authorRole?: string;
+  authorAvatar: string;
+  authorRole: string;
   category: string;
   readTime: string;
   createdAt: string;
@@ -102,34 +126,21 @@ export interface BlogPost {
   isPublished: boolean;
 }
 
-export interface Student {
-  id: string;
-  fullName: string;
-  phone: string;
-  courseId: string;
-  courseTitle: string;
-  groupName: string;
-  paymentStatus: 'paid' | 'partial' | 'unpaid';
-  paidAmount: number;
-  totalAmount: number;
-  progress: number;
-  joinedAt: string;
-}
-
 export interface HeroBanner {
   id: string;
-  badge: string;
   title: string;
-  highlightText: string;
   subtitle: string;
-  ctaText: string;
-  statsText: string;
   image: string;
+  linkText: string;
+  linkPage: string;
+  badgeText: string;
+  order: number;
   isActive: boolean;
 }
 
 export interface SiteSettings {
   siteName: string;
+  slogan: string;
   phoneMain: string;
   phoneSecondary: string;
   email: string;
@@ -142,6 +153,10 @@ export interface SiteSettings {
   mapEmbedUrl: string;
   metaTitle: string;
   metaDescription: string;
+  completedProjectsCount: number;
+  designedAreaM2: number;
+  experienceYears: number;
+  satisfiedClientsPercent: number;
   telegramBotToken?: string;
   telegramChatId?: string;
 }
@@ -155,3 +170,4 @@ export interface AdminUser {
   role: UserRole;
   avatar: string;
 }
+

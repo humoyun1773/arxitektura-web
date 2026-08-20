@@ -24,7 +24,7 @@ export const ChatWidget: React.FC = () => {
       fullName: 'Chat Foydalanuvchisi',
       phone: phone.trim(),
       source: 'Onlayn Chat Widget',
-      courseTitle: `Savol: ${question}`
+      serviceType: `Savol: ${question}`
     });
 
     setSent(true);
@@ -151,3 +151,4 @@ export const ChatWidget: React.FC = () => {
     </div>
   );
 };
+

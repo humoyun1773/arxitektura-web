@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { Settings, Save, Send, ShieldCheck, Globe, Phone, MapPin, Sparkles } from 'lucide-react';
 
@@ -307,3 +307,5 @@ export const SettingsManager: React.FC = () => {
     </div>
   );
 };
+
+

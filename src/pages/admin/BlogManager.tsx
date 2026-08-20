@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { BlogPost } from '../../types';
 import { BookOpen, Plus, Edit, Trash2, Eye, X, Sparkles } from 'lucide-react';
@@ -267,3 +267,4 @@ export const BlogManager: React.FC = () => {
     </div>
   );
 };
+

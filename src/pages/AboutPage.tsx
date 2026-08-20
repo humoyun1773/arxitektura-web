@@ -1,98 +1,99 @@
-import React from 'react';
-import { useData } from '../context/DataContext';
-import { Sparkles, Award, Target, ShieldCheck, MapPin, Users, Heart, CheckCircle2, Phone } from 'lucide-react';
+﻿import React from "react";
+import { useData } from "../context/DataContext";
+import { Award, Target, ShieldCheck, CheckCircle2, Building2, Lightbulb, Eye, Users } from "lucide-react";
 
 interface AboutPageProps {
   onNavigate: (page: string, param?: string) => void;
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
-  const { settings, openLeadModal } = useData();
+  const { openLeadModal } = useData();
 
-  const branches = [
-    {
-      name: 'Yunusobod Bosh Filiali',
-      address: "Amir Temur shoh ko'chasi, 107-B bino (Metro: Shahriston)",
-      phone: "+998 71 200 88 44",
-      rooms: "12 ta zamonaviy kompyuter sinfi, Coworking zonasi",
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      name: 'Chilonzor Filiali',
-      address: "Bunyodkor shoh ko'chasi, 42-uy (Metro: Mirzo Ulug'bek)",
-      phone: "+998 71 200 88 45",
-      rooms: "8 ta interaktiv dars xonasi, 3D Render laboratoriyasi",
-      img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80"
-    }
+  const milestones = [
+    { year: "2012", event: "Byuro tashkil etildi. Birinchi villa loyihasi Toshkent viloyatida yakunlandi." },
+    { year: "2015", event: "BIM texnologiyasi joriy etildi. Revit va ArchiCAD sertifikat olindi." },
+    { year: "2017", event: "50-loyiha tugallandi. Buxoro va Samarqandda kommertsiya binolari qurildi." },
+    { year: "2019", event: "Milliy me'morchilik mukofoti finaliga ko'tarildi. 120,000+ m² dizayn qilindi." },
+    { year: "2021", event: "Xalqaro hamkorlik: Dubay va Istanbul bilan qo'shma loyiha boshlandi." },
+    { year: "2024", event: "140+ loyiha portfeli. 380,000+ m² dizayn. 12+ yillik tajriba." },
   ];
 
   const values = [
-    {
-      title: "Amaliyotga Ustuvorlik",
-      desc: "Bizda quruq nazariya emas, faqat real bozorda talab qilinadigan bilim va ko'nikmalar o'rgatiladi."
-    },
-    {
-      title: "Shaxsiy Yondashuv",
-      desc: "Kichik guruhlar (10-12 kishi) tufayli har bir talabaning o'zlashtirishi alohida nazorat qilinadi."
-    },
-    {
-      title: "Natijaga Kafolat",
-      desc: "Darslarni o'zlashtira olmagan talabalarga keyingi oqimda bepul qayta o'qish imkoniyati beriladi."
-    },
-    {
-      title: "Karyera Hamrohligi",
-      desc: "Bitiruvchilarimizni rezyume tayyorlashdan tortib ish taklifini (Offer) olguncha qo'llab-quvvatlaymiz."
-    }
+    { icon: Lightbulb, title: "Konseptual Ijod", desc: "Har bir loyiha buyurtmachining orzusi va joy o'ziga xususiyatidan kelib chiqib noyob konsept yaratiladi." },
+    { icon: ShieldCheck, title: "Texnik Aniqlik", desc: "AR va KJ loyihalash hujjatlari O'zDSt me'yoriy bazasiga to'liq mos tuziladi." },
+    { icon: Eye, title: "Mualliflik Nazorati", desc: "Qurilish jarayonida loyiha muallifi doimiy texnik nazorat olib boradi." },
+    { icon: Users, title: "Jamoa Ruhi", desc: "Arxitektor, konstruktor, mühendis va dizayner birgalikda yagona jamoa sifatida ishlaydi." },
+  ];
+
+  const licenses = [
+    "O'zbekiston Respublikasi Arxitektura Davlat Qo'mitasi litsenziyasi",
+    "ISO 9001:2015 Sifat Menejmenti Sertifikati",
+    "Autodesk AEC Excellence mukofoti — 2022",
+    "Revit BIM 360 Platinum Partner",
+    "LEED Green Building assosiatsiya a'zosi",
   ];
 
   return (
     <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
       <div className="app-container space-y-20">
-        {/* Hero Banner */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-slate-900">
-            Kelajak Me'morlari va <span className="gradient-text">Dasturchilar Akademiyasi</span>
-          </h1>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-            "ARXITEKTURA ACADEMY" — 2016-yildan buyon zamonaviy arxitektura, 3D vizualizatsiya, IT dasturlash va dizayn sohasida xalqaro standartlarga mos kadrlar tayyorlab kelmoqda.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>Biz Haqimizda</span>
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-slate-900 leading-tight">
+              Professional Arxitektura va Interyer Byurosi
+            </h1>
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              "ARXITEKTURA" — 2012-yildan buyon O'zbekistonda turar-joy va jamoat binolarini professional
+              loyihalash xizmatini ko'rsatib kelayotgan byuro. Jamoamiz 20+ nafar sertifikatlangan arxitektor va muhandisdan iborat.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <button onClick={() => openLeadModal()} className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-2xl shadow-lg transition-colors cursor-pointer">
+                Loyiha Muzokarasi
+              </button>
+              <button onClick={() => onNavigate("projects")} className="px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-sm rounded-2xl transition-colors cursor-pointer">
+                Portfelni Ko'rish
+              </button>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Byuro ofisi" className="w-full rounded-3xl object-cover aspect-[4/3] shadow-xl" />
+            <div className="absolute -bottom-6 -left-4 bg-white border border-slate-200 rounded-2xl shadow-xl p-5">
+              <div className="font-heading font-black text-3xl text-slate-900">140+</div>
+              <div className="text-xs text-slate-500 font-medium">Yakunlangan Loyiha</div>
+            </div>
+            <div className="absolute -top-4 -right-4 bg-slate-900 text-white rounded-2xl shadow-xl p-5">
+              <div className="font-heading font-black text-3xl">12+</div>
+              <div className="text-xs text-slate-300 font-medium">Yillik Tajriba</div>
+            </div>
+          </div>
         </div>
 
-        {/* Mission & Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
-              <Target className="w-6 h-6" />
-            </div>
-            <h2 className="text-2xl font-bold font-heading text-slate-900">Bizning Missiyamiz</h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              O'zbekiston yoshlariga jahon standartlariga mos zamonaviy kasblarni sifatli va qulay o'rgatish orqali ularni xalqaro darajadagi yuqori daromadli mutaxassisga aylantirish.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-8 rounded-3xl bg-slate-900 text-white space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center"><Target className="w-6 h-6 text-white" /></div>
+            <h2 className="text-2xl font-bold font-heading">Bizning Missiyamiz</h2>
+            <p className="text-sm text-slate-300 leading-relaxed">Har bir buyurtmachi uchun nafaqat chiroyli, balki qulay, xavfsiz va iqtisodiy jihatdan samarali binolar loyihasini yaratish.</p>
           </div>
-
-          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-pink-50 border border-pink-100 flex items-center justify-center text-pink-600">
-              <Award className="w-6 h-6" />
-            </div>
+          <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center"><Award className="w-6 h-6 text-slate-900" /></div>
             <h2 className="text-2xl font-bold font-heading text-slate-900">Bizning Maqsadimiz</h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              2030-yilgacha 50,000 dan ortiq yoshlarni raqamli kasblar bilan ta'minlash hamda mamlakatimizni mintaqaviy IT va Arxitektura xabiga aylantirishga hissa qo'shish.
-            </p>
+            <p className="text-sm text-slate-600 leading-relaxed">O'rta Osiyo mintaqasida eng ishonchli professional arxitektura byurosi sifatida tan olinish.</p>
           </div>
         </div>
 
-        {/* Values */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-3xl font-extrabold font-heading text-slate-900">Bizning Asosiy Qadriyatlarimiz</h2>
-            <p className="text-sm text-slate-600">Biz nima uchun sifat va halollikni birinchi o'ringa qo'yamiz?</p>
+            <h2 className="text-3xl font-extrabold font-heading text-slate-900">Bizning Qadriyatlarimiz</h2>
+            <p className="text-sm text-slate-600">Har bir loyihada ushbu tamoyillar bizni boshqaradi</p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
-              <div key={i} className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm space-y-3">
-                <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center text-sm border border-indigo-100">
-                  0{i + 1}
+              <div key={i} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-3 hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-2xl bg-slate-900 text-white flex items-center justify-center">
+                  <v.icon className="w-5 h-5" />
                 </div>
                 <h3 className="font-heading font-bold text-base text-slate-900">{v.title}</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">{v.desc}</p>
@@ -101,46 +102,41 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Branches */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-3xl font-extrabold font-heading text-slate-900">Bizning Filiallarimiz</h2>
-            <p className="text-sm text-slate-600">Shaharning qulay nuqtalarida joylashgan zamonaviy o'quv markazlarimiz</p>
+            <h2 className="text-3xl font-extrabold font-heading text-slate-900">Byuro Tarixi</h2>
+            <p className="text-sm text-slate-600">12 yillik yo'lda muhim bosqichlar</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {branches.map((b, i) => (
-              <div key={i} className="rounded-3xl bg-white border border-slate-200/90 shadow-sm overflow-hidden flex flex-col justify-between">
-                <img src={b.img} alt={b.name} className="w-full aspect-video object-cover" />
-                <div className="p-6 space-y-4">
-                  <h3 className="font-heading font-bold text-lg text-slate-900">{b.name}</h3>
-                  <div className="space-y-2 text-xs text-slate-600">
-                    <div className="flex items-start gap-2">
-                      <MapPin className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
-                      <span>{b.address}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <a href={`tel:${b.phone.replace(/\s+/g, '')}`} className="hover:text-indigo-600 font-mono font-bold text-slate-800">
-                        {b.phone}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2 text-slate-500">
-                      <ShieldCheck className="w-4 h-4 text-indigo-600 shrink-0" />
-                      <span>{b.rooms}</span>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => openLeadModal()}
-                    className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition-colors shadow-sm"
-                  >
-                    Ushbu Filialda O'qishga Yozilish
-                  </button>
-                </div>
+          <div className="space-y-4">
+            {milestones.map((m, i) => (
+              <div key={i} className="flex items-start gap-6 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="font-heading font-black text-2xl text-slate-900 w-16 shrink-0">{m.year}</div>
+                <p className="text-sm text-slate-600 leading-relaxed pt-1">{m.event}</p>
               </div>
             ))}
           </div>
         </div>
+
+        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="text-3xl font-extrabold font-heading">Sertifikatlar va Litsenziyalar</h2>
+            <p className="text-sm text-slate-400">Faoliyatimiz davlatning me'yoriy hujjatlari asosida amalga oshiriladi</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+            {licenses.map((lic, i) => (
+              <div key={i} className="flex items-start gap-3 text-sm">
+                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                <span className="text-slate-200">{lic}</span>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <button onClick={() => openLeadModal()} className="px-8 py-3.5 bg-white text-slate-900 hover:bg-slate-100 font-bold text-sm rounded-2xl transition-colors shadow-lg cursor-pointer">
+              Biz bilan Ishlash
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   );

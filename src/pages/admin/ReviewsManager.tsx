@@ -97,9 +97,9 @@ export const ReviewsManager: React.FC = () => {
             <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
               <div>
                 <div className="font-heading font-bold text-xs text-white">{r.name}</div>
-                <div className="text-[10px] text-indigo-400">{r.courseTitle}</div>
+                <div className="text-[10px] text-indigo-400">{r.projectTitle}</div>
                 {r.company && (
-                  <div className="text-[9px] text-slate-500">{r.workPosition} ({r.company})</div>
+                  <div className="text-[9px] text-slate-500">{r.clientRole} ({r.company})</div>
                 )}
               </div>
 
@@ -198,3 +198,5 @@ export const ReviewsManager: React.FC = () => {
     </div>
   );
 };
+
+

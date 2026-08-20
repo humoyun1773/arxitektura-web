@@ -31,7 +31,7 @@ export const LeadsManager: React.FC = () => {
       return (
         lead.fullName.toLowerCase().includes(q) ||
         lead.phone.toLowerCase().includes(q) ||
-        (lead.courseTitle && lead.courseTitle.toLowerCase().includes(q))
+        (lead.projectTitle || lead.serviceType && lead.projectTitle || lead.serviceType.toLowerCase().includes(q))
       );
     }
     return true;
@@ -45,7 +45,7 @@ export const LeadsManager: React.FC = () => {
   const statusOptions: { value: LeadStatus; label: string; bg: string }[] = [
     { value: 'new', label: 'Yangi', bg: 'bg-amber-500/10 text-amber-300 border-amber-500/30' },
     { value: 'contacted', label: 'Bog\'lanildi', bg: 'bg-sky-500/10 text-sky-300 border-sky-500/30' },
-    { value: 'registered', label: 'O\'quvchi bo\'ldi', bg: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30' },
+    { value: 'contract_signed', label: 'O\'quvchi bo\'ldi', bg: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30' },
     { value: 'cancelled', label: 'Rad etildi', bg: 'bg-rose-500/10 text-rose-300 border-rose-500/30' }
   ];
 
@@ -148,7 +148,7 @@ export const LeadsManager: React.FC = () => {
 
                     <td className="p-4">
                       <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-200 font-medium">
-                        {lead.courseTitle || 'Umumiy konsultatsiya'}
+                        {lead.projectTitle || lead.serviceType || 'Umumiy konsultatsiya'}
                       </span>
                     </td>
 
@@ -223,3 +223,4 @@ export const LeadsManager: React.FC = () => {
     </div>
   );
 };
+

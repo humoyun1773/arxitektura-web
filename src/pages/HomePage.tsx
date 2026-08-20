@@ -1,8 +1,9 @@
 import React from 'react';
 import { HeroSlider } from '../components/home/HeroSlider';
 import { StatsSection } from '../components/home/StatsSection';
-import { FeaturesSection } from '../components/home/FeaturesSection';
 import { PopularCourses } from '../components/home/PopularCourses';
+import { FeaturesSection } from '../components/home/FeaturesSection';
+import { ProjectCalculator } from '../components/home/ProjectCalculator';
 import { MentorsPreview } from '../components/home/MentorsPreview';
 import { TestimonialsSection } from '../components/home/TestimonialsSection';
 import { CtaBanner } from '../components/home/CtaBanner';
@@ -17,6 +18,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <HeroSlider onNavigate={onNavigate} />
       <StatsSection />
       <PopularCourses onNavigate={onNavigate} />
+      <ProjectCalculator onNavigate={onNavigate} />
       <FeaturesSection />
       <MentorsPreview onNavigate={onNavigate} />
       <TestimonialsSection />
@@ -24,3 +26,4 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     </div>
   );
 };
+

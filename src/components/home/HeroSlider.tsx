@@ -1,7 +1,7 @@
 import React from 'react';
 import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { Sparkles, ArrowRight, CheckCircle2, Award, Users, BookOpen } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle2, Building2, Calculator, ShieldCheck, Ruler } from 'lucide-react';
 import { TelegramIcon } from '../common/SocialIcons';
 
 interface HeroSliderProps {
@@ -9,116 +9,119 @@ interface HeroSliderProps {
 }
 
 export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
-  const { banners, settings } = useData();
+  const { settings, openLeadModal } = useData();
   const { t } = useLanguage();
 
-  const current = banners[0] || {
-    badge: "🏛️ AL-HAKIM AT-TERMEZIY O'QUV MARKAZI",
-    title: 'INTIZOMNI SEVUVCHILAR UCHUN',
-    highlightText: "28 Oylik Ta'lim Kombinatsiyalari",
-    subtitle: "28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkurga ega bo'ling. Kursni muvaffaqiyatli tugatgan iqtidorli talabalar to'liq ish bilan ta'minlanadi.",
-    statsText: "4 ta Xalqaro Til | 100% Ish Bilan Ta'minlash Kafolati | Qarshi Shahar",
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80'
-  };
-
-  const telegramUrl = settings?.telegramLink || 'https://t.me/al_hakim_at_termeziy';
+  const telegramUrl = settings?.telegramLink || 'https://t.me/arxitektura_buro';
 
   return (
-    <section className="relative min-h-[90vh] sm:min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50/80 via-white to-white">
-      {/* Background Ambience / Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[500px] bg-gradient-to-tr from-indigo-100/70 via-purple-100/50 to-pink-100/30 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow"></div>
-      <div className="absolute top-20 right-10 w-72 h-72 bg-sky-100/50 rounded-full blur-3xl pointer-events-none -z-10"></div>
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-indigo-100/50 rounded-full blur-3xl pointer-events-none -z-10"></div>
-
-      {/* Grid Pattern */}
+    <section className="relative min-h-[90vh] pt-28 pb-16 lg:py-32 flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50/90 via-white to-white">
+      {/* Background Ambience / Subtle Grid */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-slate-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none opacity-40"></div>
 
       <div className="app-container w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            {/* Bureau Tag */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold tracking-wide">
+              <Building2 className="w-3.5 h-3.5 text-slate-900" />
+              <span>{t('hero.badge', '🏛️ ARXITEKTURA VA INTERYER BYUROSI')}</span>
+            </div>
+
             {/* Title */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-              {t('hero.title1', current.title)}{' '}
-              <span className="gradient-text block sm:inline">
-                {t('hero.highlight1', current.highlightText)}
-              </span>
+              {t('hero.title', 'MUKAMMAL FAZOVIY YECHIMLAR VA ZAMONAVIY ARXITEKTURA')}
             </h1>
 
             {/* Subtitle */}
             <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              {t('hero.subtitle1', current.subtitle)}
+              {t('hero.subtitle', 'Individual villalar, zamonaviy kottejlar, tijoriy binolar va eksklyuziv interyerlarni xalqaro me\'yorlar asosida noldan kalitgacha loyihalashtiramiz.')}
             </p>
 
-            {/* CTA buttons */}
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <button
+                onClick={() => onNavigate('calculator')}
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base shadow-xl shadow-slate-900/10 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+              >
+                <Calculator className="w-5 h-5 text-white shrink-0" />
+                <span>{t('hero.ctaCalculate', 'Loyihani Hisoblash')}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() => onNavigate('projects')}
+                className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-900 font-bold text-sm sm:text-base shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <Ruler className="w-5 h-5 text-slate-700" />
+                <span>{t('hero.ctaPortfolio', 'Portfelni Ko\'rish')}</span>
+              </button>
+
               <a
                 href={telegramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white font-bold text-base shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2.5 group"
+                className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-700 font-bold text-sm transition-all flex items-center justify-center gap-2"
               >
-                <TelegramIcon className="w-5 h-5 text-white shrink-0" />
+                <TelegramIcon className="w-4 h-4 text-sky-600 shrink-0" />
                 <span>{t('hero.contactTelegram', 'Bizga murojaat qiling')}</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-
-              <button
-                onClick={() => onNavigate('courses')}
-                className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 font-semibold text-base shadow-sm transition-all flex items-center justify-center gap-2"
-              >
-                <BookOpen className="w-5 h-5 text-indigo-600" />
-                <span>{t('hero.allCoursesBtn', 'Barcha Kurslar')}</span>
-              </button>
             </div>
 
-            {/* Features check list */}
+            {/* Key Advantages List */}
             <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-600 font-medium">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>{t('hero.feature1', '100% Amaliy loyihalar')}</span>
+                <span>100% Mualliflik Nazorati</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>{t('hero.feature2', 'Rasmiy diplom & sertifikat')}</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Fotorealistik 3D Renderlar</span>
               </div>
               <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>{t('hero.feature3', "Ish bilan ta'minlash kafolati")}</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>AR + KJ Ishchi Chizmalar</span>
               </div>
             </div>
           </div>
 
-          {/* Right Visual Image Card */}
+          {/* Right Visual Card */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Outer Decorative Gradient Glow */}
-              <div className="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur-xl opacity-25 group-hover:opacity-60 transition duration-1000"></div>
-
-              {/* Main Image Frame */}
-              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-2xl aspect-[4/3] sm:aspect-[16/11]">
+              {/* Main Architectural Image */}
+              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-2xl aspect-[4/3] sm:aspect-[16/12]">
                 <img
-                  src={current.image}
-                  alt={current.title}
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+                  alt="Modern Luxury Villa Architecture"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
 
                 {/* Floating Bottom Badge */}
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl flex items-center justify-between gap-3">
                   <div>
-                    <div className="text-xs font-semibold text-indigo-600">{t('hero.resultGuarantee', 'Natija Kafolati')}</div>
-                    <div className="text-xs font-bold text-slate-800 line-clamp-1">{current.statsText}</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-500">Flagman Loyiha</div>
+                    <div className="text-sm font-bold text-slate-900 line-clamp-1">Modern Oasis Luxury Villa (480 m²)</div>
                   </div>
-                  <a
-                    href={telegramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 px-3.5 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-md shadow-sky-500/25"
+                  <button
+                    onClick={() => openLeadModal()}
+                    className="shrink-0 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm"
                   >
-                    <TelegramIcon className="w-3.5 h-3.5" />
-                    <span>Telegram</span>
-                  </a>
+                    Buyurtma
+                  </button>
+                </div>
+              </div>
+
+              {/* Floating Top Mini Card */}
+              <div className="absolute -top-4 -left-4 p-3 rounded-2xl bg-white border border-slate-200 shadow-lg hidden sm:flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900 font-bold">
+                  10+
+                </div>
+                <div className="text-xs">
+                  <div className="font-bold text-slate-900">Yillik Tajriba</div>
+                  <div className="text-slate-500">Premium arxitektura</div>
                 </div>
               </div>
             </div>
@@ -128,3 +131,4 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({ onNavigate }) => {
     </section>
   );
 };
+

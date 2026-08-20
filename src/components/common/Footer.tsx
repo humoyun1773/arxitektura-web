@@ -7,7 +7,7 @@ import {
   MapPin, 
   Clock, 
   ShieldCheck, 
-  Heart,
+  Sparkles,
   ArrowUpRight
 } from 'lucide-react';
 import { TelegramIcon, InstagramIcon, YoutubeIcon } from './SocialIcons';
@@ -17,7 +17,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const { settings, courses } = useData();
+  const { settings, services, projects } = useData();
   const { t } = useLanguage();
 
   return (
@@ -30,17 +30,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               onClick={() => onNavigate('home')}
               className="flex items-center gap-3 text-left group"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center shadow-md shadow-indigo-500/20">
-                <span className="font-heading font-extrabold text-white text-lg">A</span>
+              <div className="w-10 h-10 rounded-2xl bg-slate-900 flex items-center justify-center text-white font-heading font-black text-lg">
+                A
               </div>
               <div>
-                <div className="font-heading font-bold text-lg text-slate-900">{t('brand.title', 'AL-HAKIM AT-TERMEZIY')}</div>
-                <p className="text-xs text-indigo-600 font-semibold">{t('brand.slogan', 'Intizomni Sevuvchilar Uchun • Qarshi')}</p>
+                <div className="font-heading font-extrabold text-lg text-slate-900 flex items-center gap-1.5">
+                  <span>{t('brand.title', 'ARXITEKTURA')}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 font-mono font-bold">{t('brand.badge', 'BYURO')}</span>
+                </div>
+                <p className="text-xs text-slate-500 font-semibold">{t('brand.slogan', 'Mukammal Fazoviy Yechimlar')}</p>
               </div>
             </button>
 
             <p className="text-sm text-slate-600 leading-relaxed max-w-sm">
-              {t('footer.desc', "28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkur. Kursni muvaffaqiyatli tugatgan talabalar to'liq ish bilan ta'minlanadi.")}
+              {t('footer.desc', 'Individual kottejlar, hashamatli villalar, tijoriy binolar va eksklyuziv interyerlarni noldan kalitgacha professional loyihalash byurosi.')}
             </p>
 
             {/* Socials */}
@@ -83,56 +86,66 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-wider font-heading">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider font-heading">
               {t('footer.quickLinks', 'Tezkor Havolalar')}
             </h4>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
-                <button onClick={() => onNavigate('home')} className="hover:text-indigo-600 transition-colors">
+                <button onClick={() => onNavigate('home')} className="hover:text-slate-900 transition-colors">
                   {t('nav.home', 'Bosh sahifa')}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="hover:text-indigo-600 transition-colors">
+                <button onClick={() => onNavigate('about')} className="hover:text-slate-900 transition-colors">
                   {t('nav.about', 'Biz haqimizda')}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('courses')} className="hover:text-indigo-600 transition-colors">
-                  {t('nav.courses', 'Kurslar')}
+                <button onClick={() => onNavigate('projects')} className="hover:text-slate-900 transition-colors">
+                  {t('nav.projects', 'Loyihalarimiz')}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('teachers')} className="hover:text-indigo-600 transition-colors">
-                  {t('nav.teachers', "O'qituvchilar")}
+                <button onClick={() => onNavigate('services')} className="hover:text-slate-900 transition-colors">
+                  {t('nav.services', 'Xizmatlar')}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('blog')} className="hover:text-indigo-600 transition-colors">
-                  {t('nav.blog', 'Blog & Yangiliklar')}
+                <button onClick={() => onNavigate('architects')} className="hover:text-slate-900 transition-colors">
+                  {t('nav.architects', 'Arxitektorlar')}
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('contact')} className="hover:text-indigo-600 transition-colors">
+                <button onClick={() => onNavigate('calculator')} className="hover:text-slate-900 transition-colors">
+                  {t('nav.calculator', 'Kalkulyator')}
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('blog')} className="hover:text-slate-900 transition-colors">
+                  {t('nav.blog', 'Blog')}
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('contact')} className="hover:text-slate-900 transition-colors">
                   {t('nav.contact', 'Bog\'lanish')}
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Popular Courses */}
+          {/* Services */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-wider font-heading">
-              {t('footer.programs', 'Dasturlar')}
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider font-heading">
+              {t('footer.services', 'Xizmatlarimiz')}
             </h4>
             <ul className="space-y-2 text-sm text-slate-600">
-              {courses.slice(0, 5).map((c) => (
-                <li key={c.id}>
+              {services.map((s) => (
+                <li key={s.id}>
                   <button 
-                    onClick={() => onNavigate('course-detail', c.slug)}
-                    className="hover:text-indigo-600 transition-colors text-left flex items-center gap-1 group"
+                    onClick={() => onNavigate('services')}
+                    className="hover:text-slate-900 transition-colors text-left flex items-center gap-1 group"
                   >
-                    <span className="line-clamp-1">{c.title}</span>
+                    <span className="line-clamp-1">{s.title}</span>
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                   </button>
                 </li>
@@ -142,28 +155,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Contact Details */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold text-slate-900 uppercase tracking-wider font-heading">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider font-heading">
               {t('footer.contact', "Bog'lanish")}
             </h4>
             <ul className="space-y-3 text-sm text-slate-600">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-slate-900 shrink-0 mt-0.5" />
                 <span>{settings.address}</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-indigo-600 shrink-0" />
-                <a href={`tel:${settings.phoneMain.replace(/\s+/g, '')}`} className="hover:text-indigo-600 font-mono font-semibold">
+                <Phone className="w-4 h-4 text-slate-900 shrink-0" />
+                <a href={`tel:${settings.phoneMain.replace(/\s+/g, '')}`} className="hover:text-slate-900 font-mono font-semibold">
                   {settings.phoneMain}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-indigo-600 shrink-0" />
-                <a href={`mailto:${settings.email}`} className="hover:text-indigo-600">
+                <Mail className="w-4 h-4 text-slate-900 shrink-0" />
+                <a href={`mailto:${settings.email}`} className="hover:text-slate-900">
                   {settings.email}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-slate-900 shrink-0 mt-0.5" />
                 <span className="text-xs">{settings.workingHours}</span>
               </li>
             </ul>
@@ -172,17 +185,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} {t('brand.title', 'AL-HAKIM AT-TERMEZIY')}. {t('footer.rights', 'Barcha huquqlar himoyalangan.')}</p>
+          <p>© {new Date().getFullYear()} {t('brand.title', 'ARXITEKTURA')}. Barcha huquqlar himoyalangan.</p>
           <div className="flex items-center gap-6">
             <button 
               onClick={() => onNavigate('admin')}
-              className="text-slate-600 hover:text-indigo-600 flex items-center gap-1.5 transition-colors font-medium"
+              className="text-slate-600 hover:text-slate-900 flex items-center gap-1.5 transition-colors font-semibold"
             >
-              <ShieldCheck className="w-4 h-4 text-indigo-600" />
+              <ShieldCheck className="w-4 h-4 text-slate-700" />
               <span>Admin Panel</span>
             </button>
-            <span className="flex items-center gap-1">
-              Qarshi, O'zbekiston <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 mx-0.5" />
+            <span className="text-slate-400 font-medium">
+              Toshkent, O'zbekiston
             </span>
           </div>
         </div>
@@ -190,3 +203,4 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     </footer>
   );
 };
+
