@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useData } from '../../context/DataContext';
 import { Sparkles, Star, Award, Users, ArrowRight } from 'lucide-react';
 
@@ -11,7 +11,7 @@ export const MentorsPreview: React.FC<MentorsPreviewProps> = ({ onNavigate }) =>
 
   return (
     <section className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="app-container">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="space-y-3">

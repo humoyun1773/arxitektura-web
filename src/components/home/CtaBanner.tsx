@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useData } from '../../context/DataContext';
 import { Sparkles, ArrowRight, ShieldCheck, PhoneCall } from 'lucide-react';
 
@@ -7,7 +7,7 @@ export const CtaBanner: React.FC = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="app-container">
         <div className="relative rounded-3xl p-8 sm:p-14 bg-gradient-to-r from-indigo-900/80 via-purple-900/60 to-slate-900 border border-indigo-500/30 overflow-hidden shadow-2xl shadow-indigo-500/10">
           {/* Glow lights */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>

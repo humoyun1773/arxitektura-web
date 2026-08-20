@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { 
   Clock, 
@@ -81,7 +81,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ slug, onNavi
 
   return (
     <div className="pt-28 pb-20 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="app-container">
         {/* Back navigation */}
         <button
           onClick={() => onNavigate('courses')}

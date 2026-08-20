@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Building, Sparkles } from 'lucide-react';
 
 export const PartnersSection: React.FC = () => {
@@ -13,7 +13,7 @@ export const PartnersSection: React.FC = () => {
 
   return (
     <section className="py-16 relative border-y border-slate-800/60 bg-slate-950/40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="app-container">
         <div className="text-center mb-8">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest flex items-center justify-center gap-2">
             <Sparkles className="w-3.5 h-3.5 text-indigo-400" />

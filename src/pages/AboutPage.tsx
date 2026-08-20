@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useData } from '../context/DataContext';
 import { Sparkles, Award, Target, ShieldCheck, MapPin, Users, Heart, CheckCircle2, Phone } from 'lucide-react';
 
@@ -47,7 +47,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="pt-28 pb-20 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      <div className="app-container space-y-20">
         {/* Hero Banner */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-wider">
