@@ -157,8 +157,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
             })}
           </nav>
 
-          {/* Right Language Switcher */}
-          <div className="hidden sm:flex items-center shrink-0">
+          {/* Right Language Switcher (Desktop) */}
+          <div className="hidden lg:flex items-center shrink-0">
             <div className="flex items-center bg-slate-900/90 border border-slate-800 rounded-xl p-1 text-xs font-bold shadow-inner">
               {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
                 <button
@@ -177,29 +177,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 lg:hidden">
-            {/* Mobile Language switch */}
-            <div className="flex items-center bg-slate-900/90 border border-slate-800 rounded-lg p-0.5 text-[10px] font-bold">
-              {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
-                <button
-                  key={lang}
-                  type="button"
-                  onClick={() => setCurrentLang(lang)}
-                  className={`px-2 py-1 rounded transition-all ${
-                    currentLang === lang
-                      ? 'bg-indigo-600 text-white'
-                      : 'text-slate-400'
-                  }`}
-                >
-                  {lang}
-                </button>
-              ))}
-            </div>
-
+          {/* Mobile Hamburger Button */}
+          <div className="flex items-center lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
               aria-label="Menyu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -208,12 +190,34 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         </div>
       </div>
 
-
       {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-0 top-[60px] bottom-0 bg-slate-950/98 backdrop-blur-2xl border-t border-slate-800 p-6 overflow-y-auto animate-in slide-in-from-top-4 duration-300 flex flex-col justify-between">
-          <div className="space-y-2">
-            <div className="text-xs font-semibold text-slate-500 uppercase px-3 mb-2 tracking-wider">
+          <div className="space-y-4">
+            {/* Language Selector inside Mobile Menu */}
+            <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-3">
+              <div className="text-xs font-semibold text-slate-400 mb-2 px-1">
+                Tilni tanlang / Select Language:
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {(['UZ', 'RU', 'ENG'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    type="button"
+                    onClick={() => setCurrentLang(lang)}
+                    className={`py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center ${
+                      currentLang === lang
+                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+                        : 'bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:text-white'
+                    }`}
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="text-xs font-semibold text-slate-500 uppercase px-3 pt-2 tracking-wider">
               Bo'limlar
             </div>
             {navLinks.map((link) => (
