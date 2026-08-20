@@ -1,17 +1,11 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
 import { 
   Sparkles, 
   CheckCircle2, 
   Clock, 
-  ArrowRight, 
-  ShieldCheck, 
-  Layers, 
-  Ruler, 
-  FileText, 
-  Eye,
-  Coins
+  ArrowRight
 } from 'lucide-react';
 
 interface ServicesPageProps {
@@ -80,7 +74,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
               }`}>
                 <div>
                   <div className={`text-[10px] ${selectedServiceId === srv.id ? 'text-slate-400' : 'text-slate-500'}`}>
-                    1 mÂ² narxi
+                    {t('services.pricePerM2', '1 m² narxi')}
                   </div>
                   <div className="font-heading font-black text-sm sm:text-base">
                     {srv.startingPricePerM2.toLocaleString('uz-UZ')} UZS
@@ -98,7 +92,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                       : 'bg-slate-900 text-white hover:bg-slate-800'
                   }`}
                 >
-                  Buyurtma
+                  {t('services.orderBtn', 'Buyurtma')}
                 </button>
               </div>
             </div>
@@ -113,10 +107,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                 {activeService.title}
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900">
-                Loyihalash Paketlari va Narxlari
+                {t('services.packagesTitle', 'Loyihalash Paketlari va Narxlari')}
               </h2>
               <p className="text-xs sm:text-sm text-slate-600">
-                O'zingizning byudjetingiz va talablaringizga mos to'plamni tanlang.
+                {t('services.packagesSubtitle', 'O\'zingizning byudjetingiz va talablaringizga mos to\'plamni tanlang.')}
               </p>
             </div>
 
@@ -132,7 +126,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                 >
                   {pkg.isPopular && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-white text-slate-900 font-bold text-[10px] uppercase shadow-md tracking-wide">
-                      Eng Ko'p Tanlanadigan
+                      {t('services.popularBadge', 'Eng Ko\'p Tanlanadigan')}
                     </div>
                   )}
 
@@ -147,18 +141,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                     <div className="space-y-1 py-2">
                       <div className="font-heading font-black text-2xl sm:text-3xl">
                         {pkg.pricePerM2.toLocaleString('uz-UZ')}{' '}
-                        <span className="text-xs font-normal">UZS / mÂ²</span>
+                        <span className="text-xs font-normal">UZS / m²</span>
                       </div>
                       <div className={`text-xs flex items-center gap-1.5 ${pkg.isPopular ? 'text-slate-400' : 'text-slate-500'}`}>
                         <Clock className="w-3.5 h-3.5" />
-                        <span>Muddati: {activeService?.estimatedDuration || '-'}</span>
+                        <span>{t('services.duration', 'Muddati:')} {activeService.estimatedDuration}</span>
                       </div>
                     </div>
 
                     {/* Deliverables Checklist */}
                     <div className="space-y-2 pt-4 border-t border-slate-200/40">
                       <div className={`text-[10px] font-bold uppercase tracking-wider ${pkg.isPopular ? 'text-slate-400' : 'text-slate-500'}`}>
-                        Tarkibi:
+                        {t('services.deliverables', 'Tarkibi:')}
                       </div>
                       <div className="space-y-2">
                         {pkg.deliverables.map((del, dIdx) => (
@@ -179,7 +173,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                         : 'bg-slate-900 text-white hover:bg-slate-800'
                     }`}
                   >
-                    <span>Ushbu Paketni Tanlash</span>
+                    <span>{t('services.choosePackage', 'Ushbu Paketni Tanlash')}</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -191,23 +185,23 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
         {/* Workflow Summary / FAQ CTA */}
         <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 text-center max-w-4xl mx-auto space-y-6">
           <h3 className="text-2xl font-bold font-heading text-slate-900">
-            Maxsus Yoki Nostandart Obyektingiz Bormi?
+            {t('services.customTitle', 'Maxsus Yoki Nostandart Obyektingiz Bormi?')}
           </h3>
           <p className="text-sm text-slate-600 max-w-xl mx-auto">
-            Katta maydondagi turar-joy majmualari, fabrika, tibbiyot markazlari yoki mehmonxonalar uchun individual texnik topshiriq va smeta tuzib beramiz.
+            {t('services.customDesc', 'Katta maydondagi turar-joy majmualari, fabrika, tibbiyot markazlari yoki mehmonxonalar uchun individual texnik topshiriq va smeta tuzib beramiz.')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => openLeadModal()}
               className="px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-2xl shadow-lg cursor-pointer"
             >
-              Individual Smeta Olish
+              {t('services.customCta1', 'Individual Smeta Olish')}
             </button>
             <button
               onClick={() => onNavigate('calculator')}
               className="px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-sm rounded-2xl cursor-pointer"
             >
-              Onlayn Kalkulyator
+              {t('services.customCta2', 'Onlayn Kalkulyator')}
             </button>
           </div>
         </div>
@@ -215,5 +209,3 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
     </div>
   );
 };
-
-

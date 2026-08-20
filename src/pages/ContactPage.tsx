@@ -1,9 +1,11 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { useData } from "../context/DataContext";
+import { useLanguage } from "../context/LanguageContext";
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Building2 } from "lucide-react";
 
 export const ContactPage: React.FC = () => {
   const { settings, submitLead, services } = useData();
+  const { t } = useLanguage();
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+998 ");
@@ -19,7 +21,7 @@ export const ContactPage: React.FC = () => {
     await submitLead({
       fullName: name.trim(),
       phone: phone.trim(),
-      serviceType: serviceType || "Aloqa xabari",
+      serviceType: serviceType || t('contact.serviceSelect', "Aloqa xabari"),
       notes: message,
       source: "Aloqa sahifasi"
     });
@@ -30,10 +32,19 @@ export const ContactPage: React.FC = () => {
   };
 
   const contactCards = [
-    { icon: Phone, label: "Telefon", value: settings.phoneMain, link: `tel:${settings.phoneMain?.replace(/\s/g,"")}`, color: "text-emerald-600", bg: "bg-emerald-50" },
+    { icon: Phone, label: t('nav.contact', 'Telefon'), value: settings.phoneMain, link: `tel:${settings.phoneMain?.replace(/\s/g,"")}`, color: "text-emerald-600", bg: "bg-emerald-50" },
     { icon: Mail, label: "Email", value: settings.email, link: `mailto:${settings.email}`, color: "text-blue-600", bg: "bg-blue-50" },
-    { icon: MapPin, label: "Manzil", value: settings.address, link: "#", color: "text-rose-600", bg: "bg-rose-50" },
-    { icon: Clock, label: "Ish vaqti", value: "Dush-Shan: 09:00 – 18:00", link: "#", color: "text-violet-600", bg: "bg-violet-50" },
+    { icon: MapPin, label: t('projects.location', 'Manzil'), value: settings.address, link: "#", color: "text-rose-600", bg: "bg-rose-50" },
+    { icon: Clock, label: t('services.duration', 'Ish vaqti'), value: "09:00 – 18:00", link: "#", color: "text-violet-600", bg: "bg-violet-50" },
+  ];
+
+  const whyChooseUsItems = [
+    t('contact.why_1', "12+ yillik professional tajriba"),
+    t('contact.why_2', "140+ muvaffaqiyatli yakunlangan loyiha"),
+    t('contact.why_3', "BIM texnologiyasi asosida loyihalash"),
+    t('contact.why_4', "O'zDSt me'yoriy bazasiga muvofiq hujjatlar"),
+    t('contact.why_5', "Mualliflik nazorati xizmati mavjud"),
+    t('contact.why_6', "Shaffof narxlash va muddatlarni bajarish kafolati"),
   ];
 
   return (
@@ -42,13 +53,13 @@ export const ContactPage: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Bog'lanish</span>
+            <span>{t('contact.badge', 'Bog\'lanish')}</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-slate-900">
-            Loyihangizni Muhokama Qilaylik
+            {t('contact.title', 'Loyihangizni Muhokama Qilaylik')}
           </h1>
           <p className="text-sm sm:text-base text-slate-600">
-            Qurilish loyihangizni muhokama qilish yoki bepul konsultatsiya olish uchun biz bilan bog'laning.
+            {t('contact.subtitle', 'Qurilish loyihangizni muhokama qilish yoki bepul konsultatsiya olish uchun biz bilan bog\'laning.')}
           </p>
         </div>
 
@@ -70,8 +81,8 @@ export const ContactPage: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 sm:p-10 space-y-6">
               <div>
-                <h2 className="text-2xl font-bold font-heading text-slate-900 mb-1">Murojaat Yuborish</h2>
-                <p className="text-xs text-slate-500">Formani to'ldiring — 24 soat ichida javob beramiz.</p>
+                <h2 className="text-2xl font-bold font-heading text-slate-900 mb-1">{t('contact.formTitle', 'Murojaat Yuborish')}</h2>
+                <p className="text-xs text-slate-500">{t('contact.formSubtitle', 'Formani to\'ldiring — 24 soat ichida javob beramiz.')}</p>
               </div>
 
               {isSubmitted ? (
@@ -80,26 +91,26 @@ export const ContactPage: React.FC = () => {
                     <CheckCircle2 className="w-8 h-8 text-emerald-500" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-lg text-slate-900">Murojaatingiz Qabul Qilindi!</h3>
-                    <p className="text-xs text-slate-500 mt-1">Tez orada mutaxassisimiz siz bilan bog'lanadi.</p>
+                    <h3 className="font-heading font-bold text-lg text-slate-900">{t('contact.successTitle', 'Murojaatingiz Qabul Qilindi!')}</h3>
+                    <p className="text-xs text-slate-500 mt-1">{t('contact.successSubtitle', 'Tez orada mutaxassisimiz siz bilan bog\'lanadi.')}</p>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-700">Ism-familiya *</label>
+                      <label className="text-xs font-bold text-slate-700">{t('contact.nameLabel', 'Ism-familiya *')}</label>
                       <input
                         type="text"
                         required
-                        placeholder="Masalan: Jasur Karimov"
+                        placeholder={t('contact.namePlaceholder', 'Jasur Karimov')}
                         value={name}
                         onChange={e => setName(e.target.value)}
                         className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:bg-white"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-700">Telefon *</label>
+                      <label className="text-xs font-bold text-slate-700">{t('contact.phoneLabel', 'Telefon *')}</label>
                       <input
                         type="tel"
                         required
@@ -112,23 +123,23 @@ export const ContactPage: React.FC = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700">Xizmat turi</label>
+                    <label className="text-xs font-bold text-slate-700">{t('contact.serviceLabel', 'Xizmat turi')}</label>
                     <select
                       value={serviceType}
                       onChange={e => setServiceType(e.target.value)}
                       className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:bg-white"
                     >
-                      <option value="">— Xizmat turini tanlang —</option>
+                      <option value="">{t('contact.serviceSelect', '— Xizmat turini tanlang —')}</option>
                       {services.map(s => <option key={s.id} value={s.title}>{s.title}</option>)}
                       <option value="Boshqa">Boshqa</option>
                     </select>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700">Qo'shimcha ma'lumot</label>
+                    <label className="text-xs font-bold text-slate-700">{t('contact.notesLabel', 'Qo\'shimcha ma\'lumot')}</label>
                     <textarea
                       rows={4}
-                      placeholder="Loyihangiz haqida qisqacha yozing (maydon, ob'ekt turi, muddatlar...)..."
+                      placeholder={t('contact.notesPlaceholder', 'Loyihangiz haqida qisqacha yozing...')}
                       value={message}
                       onChange={e => setMessage(e.target.value)}
                       className="w-full px-4 py-3 rounded-2xl border border-slate-200 bg-slate-50 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:bg-white resize-none"
@@ -143,7 +154,7 @@ export const ContactPage: React.FC = () => {
                     {isSubmitting ? (
                       <><span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /><span>Yuborilmoqda...</span></>
                     ) : (
-                      <><Send className="w-4 h-4" /><span>Murojaat Yuborish</span></>
+                      <><Send className="w-4 h-4" /><span>{t('contact.submitBtn', 'Murojaat Yuborish')}</span></>
                     )}
                   </button>
                 </form>
@@ -153,16 +164,9 @@ export const ContactPage: React.FC = () => {
 
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-slate-900 text-white rounded-3xl p-8 space-y-6">
-              <h3 className="font-heading font-bold text-xl">Nima Uchun Biz?</h3>
+              <h3 className="font-heading font-bold text-xl">{t('contact.whyUsTitle', 'Nima Uchun Biz?')}</h3>
               <div className="space-y-4">
-                {[
-                  "12+ yillik professional tajriba",
-                  "140+ muvaffaqiyatli yakunlangan loyiha",
-                  "BIM texnologiyasi asosida loyihalash",
-                  "O'zDSt me'yoriy bazasiga muvofiq hujjatlar",
-                  "Mualliflik nazorati xizmati mavjud",
-                  "Shaffof narxlash va muddatlarni bajarish kafolati",
-                ].map((item, i) => (
+                {whyChooseUsItems.map((item, i) => (
                   <div key={i} className="flex items-start gap-3 text-sm">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                     <span className="text-slate-300">{item}</span>
@@ -172,7 +176,7 @@ export const ContactPage: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-3">
-              <h3 className="font-heading font-bold text-base text-slate-900">Ijtimoiy Tarmoqlar</h3>
+              <h3 className="font-heading font-bold text-base text-slate-900">{t('contact.socialTitle', 'Ijtimoiy Tarmoqlar')}</h3>
               <div className="flex flex-wrap gap-3">
                 {settings.telegramLink && (
                   <a href={settings.telegramLink} target="_blank" rel="noopener noreferrer" className="px-4 py-2.5 rounded-xl bg-[#0088CC]/10 text-[#0088CC] font-bold text-xs hover:bg-[#0088CC]/20 transition-colors">
@@ -197,4 +201,3 @@ export const ContactPage: React.FC = () => {
     </div>
   );
 };
-

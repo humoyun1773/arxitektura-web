@@ -3,14 +3,11 @@ import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { 
   Calculator, 
-  Ruler, 
-  Building2, 
-  Layers, 
-  Sparkles, 
   Clock, 
   CheckCircle2, 
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  Sparkles
 } from 'lucide-react';
 
 interface ProjectCalculatorProps {
@@ -19,45 +16,37 @@ interface ProjectCalculatorProps {
 
 interface ObjectOption {
   id: string;
-  name: string;
   basePricePerM2: number;
   icon: string;
 }
 
 export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate }) => {
-  const { openLeadModal, submitLead } = useData();
+  const { openLeadModal } = useData();
   const { t } = useLanguage();
 
   const objectOptions: ObjectOption[] = [
-    { id: 'villa', name: 'Kottej & Villa', basePricePerM2: 120000, icon: '🏡' },
-    { id: 'interior', name: 'Interyer Dizayn', basePricePerM2: 180000, icon: '🛋️' },
-    { id: 'commercial', name: 'Tijoriy Bino & Ofis', basePricePerM2: 140000, icon: '🏢' },
-    { id: 'multi', name: 'Ko\'p Qavatli Bino', basePricePerM2: 85000, icon: '🏗️' },
-    { id: 'landscape', name: 'Landshaft & Fasad', basePricePerM2: 60000, icon: '🌳' }
+    { id: 'villa', basePricePerM2: 120000, icon: '🏡' },
+    { id: 'interior', basePricePerM2: 180000, icon: '🛋️' },
+    { id: 'commercial', basePricePerM2: 140000, icon: '🏢' },
+    { id: 'multi', basePricePerM2: 85000, icon: '🏗️' },
+    { id: 'landscape', basePricePerM2: 60000, icon: '🌳' }
   ];
 
   const packages = [
     { 
       id: 'eskiz', 
-      name: 'Eskiz Loyiha', 
       multiplier: 0.7, 
-      duration: '15-20 kun',
-      includes: ['3D Fotorealistik Renderlar', 'Qavatlar Planirovkasi', 'Fasad Rang Yechimi']
+      isPopular: false
     },
     { 
       id: 'standart', 
-      name: 'Standart (AR)', 
       multiplier: 1.0, 
-      duration: '25-35 kun',
-      includes: ['3D Vizualizatsiya', 'AR Me\'moriy Ishchi Chizmalar', 'O\'lchamlar & Kesimlar', 'Texnik Spetsifikatsiya']
+      isPopular: false
     },
     { 
       id: 'premium', 
-      name: 'To\'liq VIP (AR + KJ + Nazorat)', 
       multiplier: 1.5, 
-      duration: '40-60 kun',
-      popular: true,
-      includes: ['Fotorealistik 3D Renderlar', 'AR Me\'moriy Chizmalar', 'KJ Konstruktiv Muhandislik', 'Mualliflik Nazorati', 'Materiallar Smeta Ro\'yxati']
+      isPopular: true
     }
   ];
 
@@ -73,6 +62,63 @@ export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate
 
   const handleOrderCalculation = () => {
     openLeadModal();
+  };
+
+  const getObjectLabel = (id: string) => {
+    switch (id) {
+      case 'villa': return t('projects.villas', 'Kottejlar & Villalar');
+      case 'interior': return t('projects.interior', 'Interyer Dizayn');
+      case 'commercial': return t('projects.commercial', 'Tijoriy Obyektlar');
+      case 'multi': return t('calc.ot_apartment', 'Ko\'p Qavatli Bino');
+      case 'landscape': return t('projects.landscape', 'Landshaft & Fasad');
+      default: return '';
+    }
+  };
+
+  const getPackageLabel = (id: string) => {
+    switch (id) {
+      case 'eskiz': return t('calc.pkg_eskiz', 'Eskiz Loyiha');
+      case 'standart': return t('calc.pkg_standard', 'Standart (AR)');
+      case 'premium': return t('calc.pkg_vip', 'To\'liq VIP (AR + KJ)');
+      default: return '';
+    }
+  };
+
+  const getPackageDuration = (id: string) => {
+    switch (id) {
+      case 'eskiz': return t('calc.dur_eskiz', '15-20 kun');
+      case 'standart': return t('calc.dur_standard', '25-35 kun');
+      case 'premium': return t('calc.dur_vip', '40-60 kun');
+      default: return '';
+    }
+  };
+
+  const getPackageIncludes = (id: string) => {
+    if (id === 'eskiz') {
+      return [
+        t('calc.eskiz_i1', 'Bosh reja va fasad eskizlari'),
+        t('calc.eskiz_i2', '3D vizualizatsiya (5 ta kadr)'),
+        t('calc.eskiz_i3', 'Xona hajm rejasi'),
+        t('calc.eskiz_i4', 'Materiallar palitrasi')
+      ];
+    }
+    if (id === 'standart') {
+      return [
+        t('calc.std_i1', 'Eskiz loyiha to\'liq kompleksi'),
+        t('calc.std_i2', 'Arxitektura (AR) hujjatlari'),
+        t('calc.std_i3', 'Muhandislik tizimlari sxemasi'),
+        t('calc.std_i4', '3D vizualizatsiya (10+ kadr)'),
+        t('calc.std_i5', 'Xarajatlar smetasi')
+      ];
+    }
+    return [
+      t('calc.vip_i1', 'Standart AR to\'liq kompleksi'),
+      t('calc.vip_i2', 'Konstruktiv (KJ) hujjatlar'),
+      t('calc.vip_i3', 'Muhandislik (MJ) hujjatlari'),
+      t('calc.vip_i4', 'Virtual Reality (VR) tur'),
+      t('calc.vip_i5', 'Mualliflik nazorati xizmati'),
+      t('calc.vip_i6', 'BIM model (Revit)')
+    ];
   };
 
   return (
@@ -114,7 +160,7 @@ export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate
                     }`}
                   >
                     <div className="text-xl mb-1">{obj.icon}</div>
-                    <div className="text-xs font-bold line-clamp-1">{obj.name}</div>
+                    <div className="text-xs font-bold line-clamp-1">{getObjectLabel(obj.id)}</div>
                   </button>
                 ))}
               </div>
@@ -176,16 +222,16 @@ export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm text-slate-900">{pkg.name}</span>
-                        {pkg.popular && (
+                        <span className="font-bold text-sm text-slate-900">{getPackageLabel(pkg.id)}</span>
+                        {pkg.isPopular && (
                           <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-900 text-white">
-                            Tavsiya etiladi
+                            {t('calc.popular', 'Tavsiya etiladi')}
                           </span>
                         )}
                       </div>
                       <div className="text-xs text-slate-500 flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5" />
-                        <span>Muddati: {pkg.duration}</span>
+                        <span>{t('services.duration', 'Muddati:')} {getPackageDuration(pkg.id)}</span>
                       </div>
                     </div>
 
@@ -193,7 +239,7 @@ export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate
                       <div className="font-heading font-black text-sm text-slate-900">
                         {Math.round(currentObject.basePricePerM2 * pkg.multiplier).toLocaleString()} UZS
                       </div>
-                      <div className="text-[10px] text-slate-500">1 m² uchun</div>
+                      <div className="text-[10px] text-slate-500">{t('services.perM2', '1 m² uchun')}</div>
                     </div>
                   </button>
                 ))}
@@ -206,20 +252,20 @@ export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate
             <div className="space-y-6">
               <div className="flex items-center gap-2 text-slate-400 font-mono text-xs uppercase font-bold border-b border-slate-800 pb-4">
                 <Sparkles className="w-4 h-4 text-white" />
-                <span>Hisob-Kitob Xulosasi</span>
+                <span>{t('calc.selectedParams', 'Hisob-Kitob Xulosasi')}</span>
               </div>
 
               {/* Price Details */}
               <div className="space-y-2">
                 <div className="text-xs text-slate-400">
-                  {currentObject.name} • {areaM2} m² • {currentPackage.name}
+                  {getObjectLabel(currentObject.id)} • {areaM2} m² • {getPackageLabel(currentPackage.id)}
                 </div>
                 <div className="text-3xl sm:text-4xl font-extrabold font-heading text-white tracking-tight">
                   {totalCost.toLocaleString('uz-UZ')}{' '}
                   <span className="text-lg font-bold text-slate-400">UZS</span>
                 </div>
                 <div className="text-xs text-slate-400">
-                  1 m² narxi: <span className="text-white font-bold">{pricePerM2.toLocaleString()} UZS</span>
+                  {t('services.pricePerM2', '1 m² narxi')}: <span className="text-white font-bold">{pricePerM2.toLocaleString()} UZS</span>
                 </div>
               </div>
 
@@ -230,17 +276,17 @@ export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate
                   <span>{t('calc.duration', 'Taxminiy tayyor bo\'lish muddati:')}</span>
                 </div>
                 <div className="text-base font-bold text-white">
-                  {currentPackage.duration}
+                  {getPackageDuration(currentPackage.id)}
                 </div>
               </div>
 
               {/* Package Inclusions Checklist */}
               <div className="space-y-2">
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Loyiha tarkibiga kiradi:
+                  {t('calc.packageContent', 'Loyiha tarkibiga kiradi:')}
                 </div>
                 <div className="space-y-1.5">
-                  {currentPackage.includes.map((item, idx) => (
+                  {getPackageIncludes(currentPackage.id).map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-slate-300">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span>{item}</span>
@@ -263,7 +309,7 @@ export const ProjectCalculator: React.FC<ProjectCalculatorProps> = ({ onNavigate
 
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 text-center">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>Dastlabki muhandislik maslahati 100% bepul</span>
+                <span>{t('cta.callUs', 'Dastlabki muhandislik maslahati 100% bepul')}</span>
               </div>
             </div>
           </div>
