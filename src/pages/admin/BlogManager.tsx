@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { BlogPost } from '../../types';
 import { BookOpen, Plus, Edit, Trash2, Eye, X, Sparkles } from 'lucide-react';
@@ -37,10 +37,10 @@ export const BlogManager: React.FC = () => {
     setSlug(p.slug);
     setExcerpt(p.excerpt);
     setContent(p.content);
-    setCoverImage(p.coverImage);
+    setCoverImage(p.coverImage || p.image || '');
     setCategory(p.category);
     setAuthor(p.author);
-    setAuthorAvatar(p.authorAvatar);
+    setAuthorAvatar(p.authorAvatar || '');
     setReadTime(p.readTime);
     setTagsStr(p.tags.join(', '));
     setIsPublished(p.isPublished);

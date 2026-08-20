@@ -26,7 +26,7 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({ onNavigate }) => {
   const [selectedLevel, setSelectedLevel] = useState<string>('Hammasi');
   const [sortBy, setSortBy] = useState<'popular' | 'price-asc' | 'price-desc' | 'rating'>('popular');
 
-  const categories = ['Hammasi', 'Arxitektura & 3D', 'IT & Dasturlash', 'Grafik Dizayn', 'Xorijiy Tillar'];
+  const categories = ['Hammasi', "Ta'lim Kombinatsiyalari", 'Xorijiy Tillar', 'Arxitektura & 3D', 'IT & Dasturlash', 'Grafik Dizayn'];
   const levels = ['Hammasi', "Boshlang'ich", "O'rta", "Mukammal"];
 
   const filteredCourses = useMemo(() => {

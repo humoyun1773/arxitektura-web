@@ -1,4 +1,4 @@
-﻿import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
   Course,
@@ -99,14 +99,14 @@ function getSaved<T>(key: string, fallback: T): T {
 }
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [courses, setCourses] = useState<Course[]>(() => getSaved('arx_courses', initialCourses));
-  const [teachers, setTeachers] = useState<Teacher[]>(() => getSaved('arx_teachers', initialTeachers));
-  const [leads, setLeads] = useState<Lead[]>(() => getSaved('arx_leads', initialLeads));
-  const [reviews, setReviews] = useState<Review[]>(() => getSaved('arx_reviews', initialReviews));
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(() => getSaved('arx_blogs', initialBlogPosts));
-  const [students, setStudents] = useState<Student[]>(() => getSaved('arx_students', initialStudents));
-  const [banners, setBanners] = useState<HeroBanner[]>(() => getSaved('arx_banners', initialBanners));
-  const [settings, setSettings] = useState<SiteSettings>(() => getSaved('arx_settings', initialSiteSettings));
+  const [courses, setCourses] = useState<Course[]>(() => getSaved('termeziy_courses_v2', initialCourses));
+  const [teachers, setTeachers] = useState<Teacher[]>(() => getSaved('termeziy_teachers_v2', initialTeachers));
+  const [leads, setLeads] = useState<Lead[]>(() => getSaved('termeziy_leads_v2', initialLeads));
+  const [reviews, setReviews] = useState<Review[]>(() => getSaved('termeziy_reviews_v2', initialReviews));
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(() => getSaved('termeziy_blogs_v2', initialBlogPosts));
+  const [students, setStudents] = useState<Student[]>(() => getSaved('termeziy_students_v2', initialStudents));
+  const [banners, setBanners] = useState<HeroBanner[]>(() => getSaved('termeziy_banners_v2', initialBanners));
+  const [settings, setSettings] = useState<SiteSettings>(() => getSaved('termeziy_settings_v2', initialSiteSettings));
 
   // Modal & Toast
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
@@ -114,14 +114,14 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
 
   // Sync to LocalStorage
-  useEffect(() => { localStorage.setItem('arx_courses', JSON.stringify(courses)); }, [courses]);
-  useEffect(() => { localStorage.setItem('arx_teachers', JSON.stringify(teachers)); }, [teachers]);
-  useEffect(() => { localStorage.setItem('arx_leads', JSON.stringify(leads)); }, [leads]);
-  useEffect(() => { localStorage.setItem('arx_reviews', JSON.stringify(reviews)); }, [reviews]);
-  useEffect(() => { localStorage.setItem('arx_blogs', JSON.stringify(blogPosts)); }, [blogPosts]);
-  useEffect(() => { localStorage.setItem('arx_students', JSON.stringify(students)); }, [students]);
-  useEffect(() => { localStorage.setItem('arx_banners', JSON.stringify(banners)); }, [banners]);
-  useEffect(() => { localStorage.setItem('arx_settings', JSON.stringify(settings)); }, [settings]);
+  useEffect(() => { localStorage.setItem('termeziy_courses_v2', JSON.stringify(courses)); }, [courses]);
+  useEffect(() => { localStorage.setItem('termeziy_teachers_v2', JSON.stringify(teachers)); }, [teachers]);
+  useEffect(() => { localStorage.setItem('termeziy_leads_v2', JSON.stringify(leads)); }, [leads]);
+  useEffect(() => { localStorage.setItem('termeziy_reviews_v2', JSON.stringify(reviews)); }, [reviews]);
+  useEffect(() => { localStorage.setItem('termeziy_blogs_v2', JSON.stringify(blogPosts)); }, [blogPosts]);
+  useEffect(() => { localStorage.setItem('termeziy_students_v2', JSON.stringify(students)); }, [students]);
+  useEffect(() => { localStorage.setItem('termeziy_banners_v2', JSON.stringify(banners)); }, [banners]);
+  useEffect(() => { localStorage.setItem('termeziy_settings_v2', JSON.stringify(settings)); }, [settings]);
 
   const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
     setToast({ message, type });

@@ -1,4 +1,4 @@
-﻿export type CourseLevel = "Boshlang'ich" | "O'rta" | "Mukammal" | "Barcha darajalar";
+export type CourseLevel = "Boshlang'ich" | "O'rta" | "Mukammal" | "Barcha darajalar";
 
 export interface SyllabusItem {
   id: string;
@@ -8,11 +8,13 @@ export interface SyllabusItem {
   topics: string[];
 }
 
+export type CourseCategory = "Ta'lim Kombinatsiyalari" | 'Xorijiy Tillar' | 'Arxitektura & 3D' | 'IT & Dasturlash' | 'Grafik Dizayn' | 'Raqamli Marketing';
+
 export interface Course {
   id: string;
   title: string;
   slug: string;
-  category: 'Arxitektura & 3D' | 'IT & Dasturlash' | 'Grafik Dizayn' | 'Xorijiy Tillar' | 'Raqamli Marketing';
+  category: CourseCategory;
   level: CourseLevel;
   durationMonths: number;
   lessonsPerWeek: number;
@@ -68,7 +70,9 @@ export interface Lead {
 
 export interface Review {
   id: string;
-  name: string;
+  name?: string;
+  studentName?: string;
+  studentRole?: string;
   avatar: string;
   courseTitle: string;
   rating: number;
@@ -85,9 +89,11 @@ export interface BlogPost {
   slug: string;
   excerpt: string;
   content: string;
-  coverImage: string;
+  coverImage?: string;
+  image?: string;
   author: string;
-  authorAvatar: string;
+  authorAvatar?: string;
+  authorRole?: string;
   category: string;
   readTime: string;
   createdAt: string;

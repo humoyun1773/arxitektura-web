@@ -37,13 +37,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <span className="font-heading font-extrabold text-white text-lg">A</span>
               </div>
               <div>
-                <div className="font-heading font-bold text-lg text-white">ARXITEKTURA ACADEMY</div>
-                <p className="text-xs text-slate-400">Zamonaviy Kasblar O'quv Markazi</p>
+                <div className="font-heading font-bold text-lg text-white">AL-HAKIM AT-TERMEZIY</div>
+                <p className="text-xs text-indigo-400 font-medium">Intizomni Sevuvchilar Uchun • Qarshi</p>
               </div>
             </button>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              Arxitektura, 3D vizualizatsiya, IT dasturlash va zamonaviy dizayn sohasida yuqori malakali mutaxassislarni tayyorlaydigan yetakchi ta'lim markazi.
+              28 oylik ta'lim kombinatsiyalariga mos 4 ta tilga muvofiq tafakkur. Kursni muvaffaqiyatli tugatgan talabalar to'liq ish bilan ta'minlanadi.
             </p>
 
             {/* Socials */}

@@ -64,10 +64,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
             </div>
             <div>
               <div className="font-heading font-bold text-sm sm:text-base tracking-tight text-white flex items-center gap-1.5 whitespace-nowrap">
-                <span>ARXITEKTURA</span>
-                <span className="text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-mono">ACADEMY</span>
+                <span>AL-HAKIM AT-TERMEZIY</span>
+                <span className="text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-mono">MARKAZ</span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium tracking-wide whitespace-nowrap">Zamonaviy Kasblar Markazi</p>
+              <p className="text-[10px] sm:text-[11px] text-slate-400 font-medium tracking-wide whitespace-nowrap">Intizomni Sevuvchilar Uchun • Qarshi</p>
             </div>
           </button>
 

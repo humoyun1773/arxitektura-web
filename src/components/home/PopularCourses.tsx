@@ -20,7 +20,7 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
   const { courses, openLeadModal } = useData();
   const [selectedCategory, setSelectedCategory] = useState<string>('Hammasi');
 
-  const categories = ['Hammasi', 'Arxitektura & 3D', 'IT & Dasturlash', 'Grafik Dizayn', 'Xorijiy Tillar'];
+  const categories = ['Hammasi', "Ta'lim Kombinatsiyalari", 'Xorijiy Tillar', 'Arxitektura & 3D', 'IT & Dasturlash', 'Grafik Dizayn'];
 
   const filteredCourses = courses.filter((c) => {
     if (!c.isActive) return false;

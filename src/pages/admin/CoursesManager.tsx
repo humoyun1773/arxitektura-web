@@ -1,6 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useData } from '../../context/DataContext';
-import { Course, CourseLevel } from '../../types';
+import { Course, CourseLevel, CourseCategory } from '../../types';
 import { 
   Layers, 
   Plus, 
@@ -25,7 +25,7 @@ export const CoursesManager: React.FC = () => {
   // Form states
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
-  const [category, setCategory] = useState<'Arxitektura & 3D' | 'IT & Dasturlash' | 'Grafik Dizayn' | 'Xorijiy Tillar' | 'Raqamli Marketing'>('Arxitektura & 3D');
+  const [category, setCategory] = useState<CourseCategory>("Ta'lim Kombinatsiyalari");
   const [level, setLevel] = useState<CourseLevel>("O'rta");
   const [durationMonths, setDurationMonths] = useState(6);
   const [lessonsPerWeek, setLessonsPerWeek] = useState(3);
@@ -280,13 +280,14 @@ export const CoursesManager: React.FC = () => {
                   </label>
                   <select
                     value={category}
-                    onChange={(e) => setCategory(e.target.value as any)}
+                    onChange={(e) => setCategory(e.target.value as CourseCategory)}
                     className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none"
                   >
+                    <option value="Ta'lim Kombinatsiyalari">Ta'lim Kombinatsiyalari (28 oy)</option>
+                    <option value="Xorijiy Tillar">Xorijiy Tillar (7 oy)</option>
                     <option value="Arxitektura & 3D">Arxitektura & 3D</option>
                     <option value="IT & Dasturlash">IT & Dasturlash</option>
                     <option value="Grafik Dizayn">Grafik Dizayn</option>
-                    <option value="Xorijiy Tillar">Xorijiy Tillar</option>
                     <option value="Raqamli Marketing">Raqamli Marketing</option>
                   </select>
                 </div>
