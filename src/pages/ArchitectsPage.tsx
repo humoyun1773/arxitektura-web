@@ -13,7 +13,7 @@ export const ArchitectsPage: React.FC<ArchitectsPageProps> = ({ onNavigate }) =>
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-white">
+    <div className="pt-28 pb-20 min-h-screen bg-white animate-page-entrance">
       <div className="app-container space-y-16">
 
         <div className="text-center max-w-3xl mx-auto space-y-3">

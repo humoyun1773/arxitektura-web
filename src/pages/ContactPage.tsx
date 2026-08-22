@@ -48,7 +48,7 @@ export const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
+    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900 animate-page-entrance">
       <div className="app-container space-y-16">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider">

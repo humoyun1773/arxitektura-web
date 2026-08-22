@@ -14,7 +14,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 animate-page-entrance">
       <HeroSlider onNavigate={onNavigate} />
       <StatsSection />
       <PopularCourses onNavigate={onNavigate} />
@@ -26,4 +26,3 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     </div>
   );
 };
-

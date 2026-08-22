@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { useData } from "../context/DataContext";
 import { BookOpen, Clock, Eye, ArrowRight, Search } from "lucide-react";
 
@@ -29,7 +29,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
+    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900 animate-page-entrance">
       <div className="app-container space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider">

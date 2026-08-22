@@ -41,7 +41,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({ slug, onNavigate
   };
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
+    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900 animate-page-entrance">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back */}
         <button

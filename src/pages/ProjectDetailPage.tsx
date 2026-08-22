@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { useData } from "../context/DataContext";
 import { Building2, Ruler, Layers, MapPin, Calendar, ArrowLeft, CheckCircle2, Maximize2, X, User, Phone, ArrowRight } from "lucide-react";
 
@@ -32,7 +32,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ slug, onNa
   const relatedProjects = projects.filter(p => p.id !== project.id && p.category === project.category).slice(0, 3);
 
   return (
-    <div className="pt-28 pb-20 bg-slate-50/50 min-h-screen">
+    <div className="pt-28 pb-20 bg-slate-50/50 min-h-screen animate-page-entrance">
       <div className="app-container space-y-10">
 
         {/* Breadcrumb */}

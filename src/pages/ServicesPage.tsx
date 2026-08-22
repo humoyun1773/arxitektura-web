@@ -20,7 +20,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
   const activeService = services.find(s => s.id === selectedServiceId) || services[0];
 
   return (
-    <div className="pt-28 pb-20 bg-slate-50/50 min-h-screen">
+    <div className="pt-28 pb-20 bg-slate-50/50 min-h-screen animate-page-entrance">
       <div className="app-container space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">

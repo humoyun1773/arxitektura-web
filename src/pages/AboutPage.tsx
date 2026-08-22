@@ -36,7 +36,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900">
+    <div className="pt-28 pb-20 min-h-screen bg-white text-slate-900 animate-page-entrance">
       <div className="app-container space-y-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
