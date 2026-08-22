@@ -84,7 +84,7 @@ export const PopularCourses: React.FC<PopularCoursesProps> = ({ onNavigate }) =>
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="rounded-3xl bg-white border border-slate-200 hover:border-slate-400 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col group"
+              className="rounded-3xl bg-white border border-slate-200 hover-lux shadow-sm overflow-hidden flex flex-col group animate-card-pop"
             >
               {/* Image & Badges */}
               <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { Users, Award, Building2, ArrowRight } from 'lucide-react';
@@ -43,7 +43,7 @@ export const MentorsPreview: React.FC<MentorsPreviewProps> = ({ onNavigate }) =>
           {architects.map((arch) => (
             <div
               key={arch.id}
-              className="rounded-3xl bg-white border border-slate-200 hover:border-slate-400 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col group"
+              className="rounded-3xl bg-white border border-slate-200 hover-lux shadow-sm overflow-hidden flex flex-col group animate-card-pop"
             >
               {/* Photo */}
               <div className="relative aspect-square overflow-hidden bg-slate-100">
